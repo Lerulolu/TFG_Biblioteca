@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Biblioteca_TFG</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="introduceUsuario">Introduce el usuario</string>
+    <string name="introduceContrasena">Introduce la contraseña</string>
+    <string name="acceder">Acceder</string>
+    <string name="upvehu">UPV/EHU</string>
+    <string name="tituloAplicacion" translatable="false">EHU - Liburutegia </string>
+    <string name="title_activity_informacion">Informacion</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="biblioteca">Biblioteca</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="reservarLibro">Reservar Libro</string>
+    <string name="cancelarReservaLibro">Cancelar Reserva</string>
+    <string name="consultarReservaLibro">Consultar Reserva</string>
+
+    <string name="reservarAsiento">Reservar Asiento</string>
+    <string name="cancelarReservaAsiento">Cancelar Reserva</string>
+    <string name="consultarReservaAsiento">Consultar Reserva</string>
+    <string name="gaur">G.A.U.R.</string>
+</resources>
