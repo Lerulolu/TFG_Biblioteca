@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.tfg_biblioteca.R;
-import com.example.tfg_biblioteca.ReservaLibros.ReservarLibro;
+import com.example.tfg_biblioteca.ReservaLibros.ReservarListaLibros;
 
 public class PantallaPrincipalReservaAsientos extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class PantallaPrincipalReservaAsientos extends AppCompatActivity {
         btnConsultarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ReservarLibro.class);
+                Intent myIntent = new Intent(view.getContext(), ReservarListaLibros.class);
                 startActivity(myIntent);
             }
         });
