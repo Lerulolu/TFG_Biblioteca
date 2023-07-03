@@ -42,6 +42,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         btnBiblioteca.setOnClickListener(view -> {
             Intent myIntent = new Intent(view.getContext(), PantallaPrincipalReservaLibro.class);
+            myIntent.putExtra("usuario", usuario);
             startActivity(myIntent);
         });
 

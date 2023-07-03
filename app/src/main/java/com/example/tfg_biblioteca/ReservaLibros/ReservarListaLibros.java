@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tfg_biblioteca.Clases.Libro;
+import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.PantallasApp.Informacion;
 import com.example.tfg_biblioteca.R;
 
@@ -42,6 +43,10 @@ public class ReservarListaLibros extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
+        bundle = getIntent().getExtras();
+
+        Usuario usuario = (Usuario) bundle.getSerializable("usuario");
+
         //PONEMOS EL ARRAY DE LIBROS DENTRO DE EL LAYOUT
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerLibrosSinReserva.php",
 
@@ -64,7 +69,8 @@ public class ReservarListaLibros extends AppCompatActivity {
                                     jsonObject.getString("ISBN"),
                                     jsonObject.getString("tituloLibro"),
                                     jsonObject.getString("autorLibro"),
-                                    null, null);
+                                    jsonObject.getString("descripcionLibro"),
+                                    jsonObject.getString("srcImagenLibro"));
 
                             listaLibros.add(libro);
 
@@ -92,6 +98,7 @@ public class ReservarListaLibros extends AppCompatActivity {
                 Intent myIntent = new Intent(view.getContext(), ReservarLibro.class);
                 Libro libroElegido = listaLibros.get(i);
                 myIntent.putExtra("libro",libroElegido);
+                myIntent.putExtra("usuario", usuario);
                 startActivity(myIntent);
 
             }

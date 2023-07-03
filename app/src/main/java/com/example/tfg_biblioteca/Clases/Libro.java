@@ -14,20 +14,39 @@ public class Libro implements Serializable {
     private String ISBN;
     private String nombreLibro;
     private String autorLibro;
-    private Date fechaAlta;
-    private Date fechaBaja;
 
-    public Libro(int idLibro, String ISBN, String nombreLibro, String autorLibro, Date fechaAlta, Date fechaBaja) {
+    private String descripcionLibro;
+
+    private String srcImagenLibro;
+
+    public Libro(int idLibro, String ISBN, String nombreLibro, String autorLibro, String descripcionLibro, String imagenLibro) {
         this.idLibro = idLibro;
         this.ISBN = ISBN;
         this.nombreLibro = nombreLibro;
         this.autorLibro = autorLibro;
-        this.fechaAlta = fechaAlta;
-        this.fechaBaja = fechaBaja;
+        this.descripcionLibro = descripcionLibro;
+        this.srcImagenLibro = imagenLibro;
     }
 
     public Libro() {
 
+    }
+
+
+    public String getDescripcionLibro() {
+        return descripcionLibro;
+    }
+
+    public void setDescripcionLibro(String descripcionLibro) {
+        this.descripcionLibro = descripcionLibro;
+    }
+
+    public String getSrcImagenLibro() {
+        return srcImagenLibro;
+    }
+
+    public void setSrcImagenLibro(String srcImagenLibro) {
+        this.srcImagenLibro = srcImagenLibro;
     }
 
     public int getIdLibro() {
@@ -62,27 +81,12 @@ public class Libro implements Serializable {
         this.autorLibro = autorLibro;
     }
 
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(Date fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
-    public Date getFechaBaja() {
-        return fechaBaja;
-    }
-
-    public void setFechaBaja(Date fechaBaja) {
-        this.fechaBaja = fechaBaja;
-    }
 
     @Override
     public String toString() {
         String cadena = "Autor Libro: " + autorLibro + "\n" +
                 "Titulo Libro: " + nombreLibro + "\n" +
-                "ISBN: " + ISBN + "\n";
+                "ISBN: " + ISBN + "\n" ;
         return cadena;
     }
 
