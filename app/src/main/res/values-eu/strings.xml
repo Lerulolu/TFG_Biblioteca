@@ -11,4 +11,19 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="biblioteca">Biblioteca</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="reservarLibro">Reservar Libro</string>
+    <string name="cancelarReservaLibro">Cancelar Reserva</string>
+    <string name="consultarReservaLibro">Consultar Reserva</string>
+
+    <string name="reservarAsiento">Reservar Asiento</string>
+    <string name="cancelarReservaAsiento">Cancelar Reserva</string>
+    <string name="consultarReservaAsiento">Consultar Reserva</string>
+
+    <string name="autorDelLibro">Autor del libro</string>
+    <string name="ISBNdelLibro">ISBN del libro</string>
+    <string name="nombreDelLibro">Nombre del libro</string>
+    <string name="descripcionDelLibro">Descripción del libro</string>
 </resources>

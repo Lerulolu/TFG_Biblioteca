@@ -5,9 +5,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Libro  {
+public class Libro implements Serializable {
 
     private int idLibro;
     private String ISBN;

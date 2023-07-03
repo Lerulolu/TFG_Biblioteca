@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TFG_Biblioteca"
         tools:targetApi="31">
         <activity
+            android:name=".ReservaLibros.ReservarLibro"
+            android:exported="false" />
+        <activity
             android:name=".ReservaAsientos.CancelarReservaAsiento"
             android:exported="false" />
         <activity
@@ -28,7 +31,7 @@
             android:name=".ReservaAsientos.PantallaPrincipalReservaAsientos"
             android:exported="false" />
         <activity
-            android:name=".ReservaLibros.ReservarLibro"
+            android:name=".ReservaLibros.ReservarListaLibros"
             android:exported="false" />
         <activity
             android:name=".ReservaLibros.PantallaPrincipalReservaLibro"
