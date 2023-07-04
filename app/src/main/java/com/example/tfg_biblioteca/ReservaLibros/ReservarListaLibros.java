@@ -77,7 +77,6 @@ public class ReservarListaLibros extends AppCompatActivity {
                         }
 
                         ArrayAdapter<Libro> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaLibros);
-
                         layoutListaReserva.setAdapter(adapter);
 
                     } catch (JSONException e) {

@@ -10,13 +10,19 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.tfg_biblioteca.Clases.ReservaAsiento;
+import com.example.tfg_biblioteca.Clases.ReservaLibro;
 import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.R;
+import com.example.tfg_biblioteca.ReservaAsientos.ReservarAsiento;
 import com.example.tfg_biblioteca.ReservaLibros.PantallaPrincipalReservaLibro;
+import com.example.tfg_biblioteca.ReservaLibros.ReservarLibro;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
     Bundle bundle;
+
+    private Usuario usuario;
 
     ImageButton btnBiblioteca, btnReservaSitio, btnAjustes;
 
@@ -29,15 +35,16 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        Usuario usuario = (Usuario) bundle.getSerializable("usuario");
-
+        usuario = (Usuario) bundle.getSerializable("usuario");
 
         this.btnBiblioteca = findViewById(R.id.btnBiblioteca);
         this.btnReservaSitio = findViewById(R.id.btnReservaSitio);
         this.btnAjustes = findViewById(R.id.btnAjustes);
 
         btnReservaSitio.setOnClickListener(view -> {
-
+            Intent myIntent = new Intent(view.getContext(), ReservarAsiento.class);
+            myIntent.putExtra("usuario", usuario);
+            startActivity(myIntent);
         });
 
         btnBiblioteca.setOnClickListener(view -> {

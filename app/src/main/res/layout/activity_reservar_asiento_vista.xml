@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaAsientos.ReservarAsiento">
+    tools:context=".ReservaAsientos.ReservarAsientoVista">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,54 +50,85 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
-            android:orientation="vertical"
-            android:padding="50dp"
+            android:orientation="horizontal"
+            android:padding="16dp"
             tools:context=".LoginActivity">
 
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selecciona una opción" />
-
-            <Spinner
-                android:id="@+id/seleccionPiso"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="0.33"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="0.33"
+                    android:id="@+id/layoutIzq"
+                    android:gravity="center"
+                    android:padding="10dp">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selecciona una opción"
-                android:paddingTop="50dp"/>
+                </LinearLayout>
 
-            <Spinner
-                android:id="@+id/seleccionMesa"
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/borde_negro"
+                android:layout_weight="0.33">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/mesa"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textSize="40dp"
+                    android:layout_weight="0.5"/>
+
+                <TextView
+                    android:id="@+id/idMesa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="40dp"
+                    android:layout_weight="0.5"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="0.33"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.33"
+                    android:gravity="center"
+                    android:id="@+id/layoutDrc"
+                    android:padding="10dp">
 
 
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btnBuscarSitios"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:layout_marginLeft="125dp"
-                android:text="@string/aceptar"/>
+                </LinearLayout>
 
 
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

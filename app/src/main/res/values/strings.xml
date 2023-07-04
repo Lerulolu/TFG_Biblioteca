@@ -5,6 +5,7 @@
     <string name="introduceUsuario">Introduce el usuario</string>
     <string name="introduceContrasena">Introduce la contraseña</string>
     <string name="acceder">Acceder</string>
+    <string name="aceptar">Aceptar</string>
     <string name="upvehu">UPV/EHU</string>
     <string name="tituloAplicacion" translatable="false">EHU - Liburutegia </string>
     <string name="title_activity_informacion">Informacion</string>
@@ -26,5 +27,9 @@
     <string name="ISBNdelLibro">ISBN del libro</string>
     <string name="nombreDelLibro">Nombre del libro</string>
     <string name="descripcionDelLibro">Descripción del libro</string>
+
+    <string name="estadoReserva">Estado de la reserva</string>
+
+    <string name="mesa">M\nE\nS\nA</string>
 
 </resources>
