@@ -4,18 +4,11 @@ public class Asiento {
 
     private int idAsiento;
     private Mesa mesa;
-    private boolean estaOcupdo;
-
     private int numAsiento;
 
-    public Asiento(){
-
-    }
-
-    public Asiento(int idAsiento, Mesa mesa, boolean estaOcupdo, int numasiento) {
+    public Asiento(int idAsiento, int numasiento, Mesa mesa) {
         this.idAsiento = idAsiento;
         this.mesa = mesa;
-        this.estaOcupdo = estaOcupdo;
         this.numAsiento = numasiento;
     }
 
@@ -43,11 +36,4 @@ public class Asiento {
         this.mesa = mesa;
     }
 
-    public boolean isEstaOcupdo() {
-        return estaOcupdo;
-    }
-
-    public void setEstaOcupdo(boolean estaOcupdo) {
-        this.estaOcupdo = estaOcupdo;
-    }
 }

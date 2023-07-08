@@ -31,7 +31,7 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/btnSalir"
+                android:id="@+id/btnSalirPPRL"
                 android:layout_width="34dp"
                 android:layout_height="32dp"
                 android:layout_marginLeft="20dp"
@@ -85,7 +85,7 @@
                                 android:layout_height="80dp"
                                 android:background="@android:color/transparent"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/libro"
+                                android:src="@drawable/libro_3"
                                 app:tint="@color/verde"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="25dp"/>
@@ -128,7 +128,7 @@
                                 android:layout_height="80dp"
                                 android:background="@android:color/transparent"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/libro"
+                                android:src="@drawable/libro_3"
                                 app:tint="@color/rojoLibro"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="25dp"/>
@@ -177,7 +177,7 @@
                         android:layout_height="80dp"
                         android:background="@android:color/transparent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/libro"
+                        android:src="@drawable/libro_3"
                         app:tint="@color/azulLibro"
                         android:layout_gravity="center"
                         android:layout_marginTop="25dp"/>

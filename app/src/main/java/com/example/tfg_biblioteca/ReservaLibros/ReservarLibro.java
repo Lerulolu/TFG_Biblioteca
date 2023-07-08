@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +21,14 @@ import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.PantallasApp.Login;
 import com.example.tfg_biblioteca.PantallasApp.PantallaPrincipal;
+import com.example.tfg_biblioteca.PantallasApp.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -40,6 +43,9 @@ public class ReservarLibro extends AppCompatActivity {
     ImageView fotoLibro;
 
     Bundle bundle;
+
+    ImageButton btnSalir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,7 +54,7 @@ public class ReservarLibro extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         Libro libro = (Libro) bundle.getSerializable("libro");
-        Usuario usuario = (Usuario) bundle.getSerializable("usuario");
+        Usuario usuario = Utilidades.getMyUtilidades().obtenerUsuario(this);
 
         autorLibro = findViewById(R.id.autorLibro);
         ISBNLibro = findViewById(R.id.ISBNLibro);
@@ -56,37 +62,44 @@ public class ReservarLibro extends AppCompatActivity {
         descripcionLibro = findViewById(R.id.descripcionLibro);
         btnReservarLibro = findViewById(R.id.btnReservarLibro);
         fotoLibro = findViewById(R.id.fotoLibro);
+        btnSalir = findViewById(R.id.btnSalir);
 
 
         autorLibro.setText(libro.getAutorLibro());
         ISBNLibro.setText(libro.getISBN());
         nombreLibro.setText(libro.getNombreLibro());
         descripcionLibro.setText(libro.getDescripcionLibro());
-        fotoLibro.setImageURI(Uri.parse("/src/main/res/drawable/ajustes.png"));
-        btnReservarLibro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(view.getContext());
+        String nombreImagen = libro.getSrcImagenLibro();
 
-                dialogo.setTitle("Realizar Reserva").
-                        setMessage("¿Deseas realizar la reserva de este libro?")
-                        .setPositiveButton("Aceptar", (dialogInterface, i) -> {
-                            realizarReservaLibro(libro, usuario, "http://192.168.0.37:80/proyecto_tfg/realizarReserva.php");
+        int resourceId = getResources().getIdentifier(nombreImagen, "drawable", getPackageName());
+        fotoLibro.setImageResource(resourceId);
 
-                            Intent myIntent = new Intent(view.getContext(), PantallaPrincipal.class);
-                            myIntent.putExtra("usuario", usuario);
-                            startActivity(myIntent);
-                        })
-                        .setNegativeButton("Cancelar", (dialogInterface, i) -> {
-                            dialogInterface.dismiss();
-                        });
+        btnReservarLibro.setOnClickListener(view -> {
 
-                AlertDialog dialog = dialogo.create();
-                dialog.show();
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(view.getContext());
 
-            }
+            dialogo.setTitle("Realizar Reserva").
+                    setMessage("¿Deseas realizar la reserva de este libro?")
+                    .setPositiveButton("Aceptar", (dialogInterface, i) -> {
+
+                        realizarReservaLibro(libro, usuario, "http://192.168.0.37:80/proyecto_tfg/realizarReserva.php");
+
+                        Intent myIntent = new Intent(view.getContext(), PantallaPrincipal.class);
+                        myIntent.putExtra("usuario", usuario);
+                        startActivity(myIntent);
+
+                    })
+                    .setNegativeButton("Cancelar", (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                    });
+
+            AlertDialog dialog = dialogo.create();
+            dialog.show();
+
         });
+
+        btnSalir.setOnClickListener(view -> Utilidades.getMyUtilidades().cerrarSesion(this));
 
     }
 
@@ -103,11 +116,14 @@ public class ReservarLibro extends AppCompatActivity {
                 error -> Toast.makeText(this, "No se ha realizado la reserva del libro", Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
+
+                Date fechaActual = Calendar.getInstance().getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
                 Map<String, String> params = new HashMap<>();
                 params.put("idLibro", ""+libro.getIdLibro());
                 params.put("idUsuario", ""+usuario.getIdUsuario());
-                params.put("fechaAlta", ""+Calendar.getInstance().getTime());
-                params.put("fechaBaja", ""+Calendar.getInstance().getTime());
+                params.put("fechaReserva", dateFormat.format(fechaActual));
                 return params;
             }
         };

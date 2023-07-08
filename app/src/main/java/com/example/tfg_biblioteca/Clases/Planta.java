@@ -1,26 +1,27 @@
 package com.example.tfg_biblioteca.Clases;
 
+import static com.example.tfg_biblioteca.PantallasApp.Ajustes.cambiarIdioma;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tfg_biblioteca.R;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Plantas  implements Serializable {
+public class Planta extends AppCompatActivity implements Serializable {
 
     private int idPlanta;
 
     private int numPlanta;
 
-    ArrayList<Mesa> listaMesas;
 
-    public Plantas(){
-        listaMesas = new ArrayList<>();
-    }
-
-
-
-    public Plantas(int idPlanta, int numPlanta) {
+    public Planta(int idPlanta, int numPlanta) {
         this.idPlanta = idPlanta;
         this.numPlanta = numPlanta;
-        listaMesas = new ArrayList<>();
     }
 
     public int getIdPlanta() {
@@ -41,7 +42,6 @@ public class Plantas  implements Serializable {
 
     @Override
     public String toString() {
-        String cadena = "Planta " + numPlanta + "\n" ;
-        return cadena;
+        return  "Planta "+numPlanta;
     }
 }

@@ -1,5 +1,62 @@
 <resources>
+
     <string name="app_name">Biblioteca_TFG</string>
+
+    <!-- ////////////////////////////// -->
+    <!-- ///////     LIBROS    //////// -->
+    <!-- ////////////////////////////// -->
+
+    <string name="reservaLibro.autorDelLibro">Autor del libro: </string>
+    <string name="reservaLibro.ISBNdelLibro">ISBN del libro: </string>
+    <string name="reservaLibro.nombreDelLibro">Nombre del libro: </string>
+    <string name="reservaLibro.descripcionDelLibro">Descripción del libro: </string>
+    <string name="reservaLibro.librosDisponibles">Libros Disponibles</string>
+    <string name="reservaLibro.estadoReserva">Estado de la reserva</string>
+
+
+    <string name="consultaReservaLibro.fechaReserva">Fecha de la reserva</string>
+    <string name="consultaReservaLibro.listaReservas">Reservas Realizadas</string>
+    <string name="consultaReservaLibro.idReserva">ID de la Reserva</string>
+    <string name="consultaReservaLibro.estadoProceso">EN PROCESO</string>
+    <string name="consultaReservaLibro.estadoCompletado">COMPLETADO</string>
+
+    <string name="cancelarReservaLibro.descripcion">Por favor, introduce el ID de la reserva que quieres cancelar</string>
+    <string name="cancelarReservaLibro.introduceCodigo">Introduce el codigo</string>
+    <string name="cancelarReservaLibro.codigoEnBlanco">Por favor, introduce un codigo</string>
+    <string name="cancelarReservaLibro.idNoEncontrado">El código introducido no se encuentra en su lista de reservas. Por favor, compruebe que ha escrito bien el ID del código</string>
+    <string name="cancelarReservaLibro.idEncontrado">La reserva del libro ha sido cancelada</string>
+    <string name="cancelarReservaLibro.estadoCompletado">La reserva de este libro está completada, no se puede eliminar de la lista.</string>
+
+
+    <!-- ////////////////////////////// -->
+    <!-- ///////     SILLAS    //////// -->
+    <!-- ////////////////////////////// -->
+
+    <string name="reservarAsiento.reservarAsientoFecha">Selecciona una fecha</string>
+    <string name="reservarAsiento.fecha">Selecciona una fecha</string>
+    <string name="reservarAsiento.mesa">M\nE\nS\nA</string>
+    <string name="reservarAsiento.seleccionPlanta">Planta</string>
+    <string name="reservarAsiento.seleccionMesa">Mesa</string>
+
+    <string name="cancelarReservaAsiento.cancelarReserva">Cancelar Reserva</string>
+    <string name="cancelarReservaAsiento.descripcion">Por favor, introduce el ID de la reserva que quieres cancelar</string>
+    <string name="cancelarReservaAsiento.introduceCodigo">Introduce el código</string>
+    <string name="cancelarReservaAsiento.fechaPasada">La fecha de esta reserva es anterior a la fecha actual. Por favor, introduce una fecha valida</string>
+    <string name="cancelarReservaAsiento.idNoEncontrado">No se ha encontrado el ID de esta reserva</string>
+    <string name="cancelarReservaAsiento.idEncontrado">La reserva se ha cancelado correctamente</string>
+
+    <string name="consultarReservaAsiento.idReserva">ID Reserva: </string>
+    <string name="consultarReservaAsiento.fechaReserva">Fecha Reserva: </string>
+    <string name="consultarReservaAsiento.numPlanta">Número Planta: </string>
+    <string name="consultarReservaAsiento.numMesa">Número Mesa: </string>
+    <string name="consultarReservaAsiento.numAsiento">Número Asiento: </string>
+    <string name="consultarReservaAsiento.listaReservas">Reservas Realizadas</string>
+
+
+    <!-- ////////////////////////////// -->
+    <!-- ///////     OTROS     //////// -->
+    <!-- ////////////////////////////// -->
+
     <string name="usuario">Usuario</string>
     <string name="contrasena">Contraseña</string>
     <string name="introduceUsuario">Introduce el usuario</string>
@@ -7,29 +64,52 @@
     <string name="acceder">Acceder</string>
     <string name="aceptar">Aceptar</string>
     <string name="upvehu">UPV/EHU</string>
-    <string name="tituloAplicacion" translatable="false">EHU - Liburutegia </string>
-    <string name="title_activity_informacion">Informacion</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="tituloAplicacion">EHU Liburutegia </string>
     <string name="biblioteca">Biblioteca</string>
     <string name="ajustes">Ajustes</string>
     <string name="reservarLibro">Reservar Libro</string>
     <string name="cancelarReservaLibro">Cancelar Reserva</string>
     <string name="consultarReservaLibro">Consultar Reserva</string>
-
     <string name="reservarAsiento">Reservar Asiento</string>
     <string name="cancelarReservaAsiento">Cancelar Reserva</string>
     <string name="consultarReservaAsiento">Consultar Reserva</string>
     <string name="gaur">G.A.U.R.</string>
+    <string name="informacion">
 
-    <string name="autorDelLibro">Autor del libro</string>
-    <string name="ISBNdelLibro">ISBN del libro</string>
-    <string name="nombreDelLibro">Nombre del libro</string>
-    <string name="descripcionDelLibro">Descripción del libro</string>
+        Bienvenido/a a la nueva aplicación de reserva y gestión de la biblioteca de la Escuela de Ingeniería de la UPV/EHU de Bilbao. \n\nCon esta nueva aplicación, podrás tanto reservar un sitio en la bilbioteca para poder estudiar, como reservar los libros que necesites en la biblioteca. \n\n
+        HORARIOS DE LA BIBLIOTECA \n\nLunes  9:00–20:30 \n\nMartes  9:00–20:30\n\nMiércoles  9:00–20:00\n\nJueves  9:00–20:00\n\nViernes  9:00–20:00\n\nSábado  Cerrado\n\nDomingo  Cerrado\n\nSi tienes cualquier duda te dejamos nuestros contactos para que podamos resolvertelas.
 
-    <string name="estadoReserva">Estado de la reserva</string>
+    </string>
 
-    <string name="mesa">M\nE\nS\nA</string>
+    <string name="horasBiblioteca">Lunes  9:00–20:30 \nMartes  9:00–20:30\nMiércoles  9:00–20:00\nJueves  9:00–20:00\nViernes  9:00–20:00\nSábado  Cerrado\nDomingo  Cerrado</string>
+
+    <string name="informacion.noEncuentraMAPS">No tienes google MAPS instalado</string>
+
+    <string name="direccion">Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Vizcaya</string>
+
+    <string name="bienvenido">Bienvenido a EHU - Liburutegia</string>
+
+    <string name="olvidoContrasena">¿Olvidó su contraseña?</string>
+
+    <string name="horarioBiblioteca">Horario de la Biblioteca</string>
+
+    <string name="valorarAPP">Valorar Aplicación</string>
+
+    <string name="idioma.castellano">Castellano</string>
+    <string name="idioma.euskera">Euskera</string>
+
+    <!-- ////////////////////////////// -->
+    <!-- ///////     AJUSTES   //////// -->
+    <!-- ////////////////////////////// -->
+
+    <string name="ajustes.appNoInstalada">La aplicacion no esta instalada</string>
+    <string name="ajustes.cambioContrasena">Modificar la contraseña</string>
+    <string name="ajustes.seleccionaIdioma">Selecciona un idioma</string>
+    <string name="ajustes.guardar">Guardar</string>
+
+
+
+
+
 
 </resources>

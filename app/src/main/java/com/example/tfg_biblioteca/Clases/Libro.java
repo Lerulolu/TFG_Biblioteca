@@ -14,9 +14,7 @@ public class Libro implements Serializable {
     private String ISBN;
     private String nombreLibro;
     private String autorLibro;
-
     private String descripcionLibro;
-
     private String srcImagenLibro;
 
     public Libro(int idLibro, String ISBN, String nombreLibro, String autorLibro, String descripcionLibro, String imagenLibro) {
@@ -84,8 +82,9 @@ public class Libro implements Serializable {
 
     @Override
     public String toString() {
-        String cadena = "Autor Libro: " + autorLibro + "\n" +
-                "Titulo Libro: " + nombreLibro + "\n" +
+        String cadena =
+                "\nAutor Libro: " + autorLibro + "\n\n" +
+                "Titulo Libro: " + nombreLibro + "\n\n" +
                 "ISBN: " + ISBN + "\n" ;
         return cadena;
     }

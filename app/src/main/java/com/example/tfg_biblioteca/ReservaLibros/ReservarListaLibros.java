@@ -1,22 +1,24 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tfg_biblioteca.Adaptadores.AdaptadorLibro;
 import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Informacion;
+import com.example.tfg_biblioteca.PantallasApp.Login;
+import com.example.tfg_biblioteca.PantallasApp.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -27,27 +29,48 @@ import java.util.ArrayList;
 
 public class ReservarListaLibros extends AppCompatActivity {
 
-    Bundle bundle;
-
     private ArrayList<Libro> listaLibros;
 
-    ListView layoutListaReserva;
+    ListView listViewLibros;
+
+    private AdaptadorLibro adapter;
+
+    ImageButton btnSalir;
+
+    SearchView busquedaLibro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_reservar_lista_libros);
 
-        this.layoutListaReserva = findViewById(R.id.layoutListaReserva);
+        this.listViewLibros = findViewById(R.id.layoutListaReserva);
+
+        this.btnSalir = findViewById(R.id.btnSalir);
+
+        busquedaLibro = findViewById(R.id.busquedaLibro);
+
+        cargarListaLibrosSinReserva();
+
+        listViewLibros.setOnItemClickListener((adapterView, view, i, l) -> {
+
+            Intent myIntent = new Intent(view.getContext(), ReservarLibro.class);
+            Libro libroElegido = listaLibros.get(i);
+            myIntent.putExtra("libro",libroElegido);
+            startActivity(myIntent);
+
+        });
+
+        btnSalir.setOnClickListener(view -> Utilidades.getMyUtilidades().cerrarSesion(this));
+
+    }
+
+    public void cargarListaLibrosSinReserva(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        bundle = getIntent().getExtras();
-
-        Usuario usuario = (Usuario) bundle.getSerializable("usuario");
-
-        //PONEMOS EL ARRAY DE LIBROS DENTRO DE EL LAYOUT
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerLibrosSinReserva.php",
 
                 response -> {
@@ -76,8 +99,22 @@ public class ReservarListaLibros extends AppCompatActivity {
 
                         }
 
-                        ArrayAdapter<Libro> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaLibros);
-                        layoutListaReserva.setAdapter(adapter);
+                        adapter = new AdaptadorLibro(this, listaLibros);
+                        listViewLibros.setAdapter(adapter);
+
+                        busquedaLibro.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                            @Override
+                            public boolean onQueryTextSubmit(String s) {
+                              //  adapter.getFilter().filter(s);
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onQueryTextChange(String s) {
+                                adapter.getFilter().filter(s);
+                                return true;
+                            }
+                        });
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -90,23 +127,7 @@ public class ReservarListaLibros extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
-        layoutListaReserva.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent myIntent = new Intent(view.getContext(), ReservarLibro.class);
-                Libro libroElegido = listaLibros.get(i);
-                myIntent.putExtra("libro",libroElegido);
-                myIntent.putExtra("usuario", usuario);
-                startActivity(myIntent);
-
-            }
-        });
-
     }
-
-
-
 
 
 }

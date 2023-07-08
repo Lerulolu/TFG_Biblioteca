@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,48 +16,65 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tfg_biblioteca.Adaptadores.AdaptadorReservaLibro;
 import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.ReservaLibro;
 import com.example.tfg_biblioteca.Clases.Usuario;
+import com.example.tfg_biblioteca.PantallasApp.Login;
+import com.example.tfg_biblioteca.PantallasApp.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConsultarListaReservas extends AppCompatActivity {
-
-    Bundle bundle;
+public class ConsultarListaReservasLibro extends AppCompatActivity {
 
     Usuario usuario;
 
-    ListView layoutListaReservas;
+    ListView layoutListaConsultaReservas;
 
     ArrayList<ReservaLibro> listaReservasLibros;
+
+    ImageButton btnSalir;
+
+    AdaptadorReservaLibro adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultar_lista_reservas);
+        setContentView(R.layout.activity_consultar_lista_reservas_libro);
 
-        layoutListaReservas = findViewById(R.id.layoutListaReservas);
+        layoutListaConsultaReservas = findViewById(R.id.layoutListaConsultaReservas);
 
-        bundle = getIntent().getExtras();
+        btnSalir = findViewById(R.id.btnSalir);
 
-        usuario = (Usuario) bundle.getSerializable("usuario");
+        usuario = Utilidades.getMyUtilidades().obtenerUsuario(this);
+
+        cargarListaDeReservas();
+
+        layoutListaConsultaReservas.setOnItemClickListener((adapterView, view, i, l) -> {
+
+            ReservaLibro reservaElegida = listaReservasLibros.get(i);
+            Intent myIntent = new Intent(view.getContext(), ConsultarReservaLibro.class);
+            myIntent.putExtra("reservaElegida",reservaElegida);
+            startActivity(myIntent);
+
+        });
+
+        btnSalir.setOnClickListener(view -> Utilidades.getMyUtilidades().cerrarSesion(this));
+    }
+
+    private void cargarListaDeReservas(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        //PONEMOS EL ARRAY DE LIBROS DENTRO DE EL LAYOUT
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaReservasAlumno.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaReservasLibros.php",
 
                 response -> {
 
@@ -81,23 +99,9 @@ public class ConsultarListaReservas extends AppCompatActivity {
                                     jsonObject.getString("srcImagenLibro"));
 
 
-                            String fechaAct = jsonObject.getString("fechaAlta");
-
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-                            Date date = new Date();
-
-                            try {
-                                date = dateFormat.parse(fechaAct);
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-
-                            }
-
-
                             ReservaLibro reservaLibro = new ReservaLibro(
                                     jsonObject.getInt("idReservaLibro"),
-                                    date
+                                    jsonObject.getString("fechaReserva")
                             );
 
                             reservaLibro.setLibro(libro);
@@ -106,9 +110,8 @@ public class ConsultarListaReservas extends AppCompatActivity {
 
                         }
 
-                        ArrayAdapter<ReservaLibro> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaReservasLibros);
-
-                        layoutListaReservas.setAdapter(adapter);
+                        adapter = new AdaptadorReservaLibro(this, listaReservasLibros);
+                        layoutListaConsultaReservas.setAdapter(adapter);
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -126,14 +129,6 @@ public class ConsultarListaReservas extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
-        layoutListaReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-                ReservaLibro reservaElegida = listaReservasLibros.get(i);
-                
-            }
-        });
     }
+
 }

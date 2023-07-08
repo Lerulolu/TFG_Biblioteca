@@ -2,29 +2,30 @@ package com.example.tfg_biblioteca.Clases;
 
 import androidx.recyclerview.widget.AsyncListUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ReservaLibro {
+public class ReservaLibro implements Serializable {
 
     private int idReservaLibro;
     private Libro libro;
-    private Date fecha;
-    private Usuario idUsuario;
+    private String fechaReserva;
+    private Usuario usuario;
 
     public ReservaLibro() {
 
     }
 
-    public ReservaLibro(int idReservaLibro, Date fecha) {
+    public ReservaLibro(int idReservaLibro, String fecha) {
         this.idReservaLibro = idReservaLibro;
-        this.fecha = fecha;
+        this.fechaReserva = fecha;
     }
 
-    public ReservaLibro(int idReservaLibro, Libro libro, Date fecha, Usuario idUsuario) {
+    public ReservaLibro(int idReservaLibro, Libro libro, String fecha, Usuario v) {
         this.idReservaLibro = idReservaLibro;
         this.libro = libro;
-        this.fecha = fecha;
-        this.idUsuario = idUsuario;
+        this.fechaReserva = fecha;
+        this.usuario = usuario;
     }
 
     public int getIdReservaLibro() {
@@ -43,29 +44,33 @@ public class ReservaLibro {
         this.libro = libro;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getFechaReserva() {
+        return fechaReserva;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaReserva(String fecha) {
+        this.fechaReserva = fecha;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario idUsuario) {
+        this.usuario = idUsuario;
     }
 
     @Override
     public String toString() {
-        String cadena = "Autor Libro: " + libro.getAutorLibro() + "\n" +
-                "Titulo Libro: " + libro.getNombreLibro() + "\n" +
-                "ISBN: " + libro.getISBN() + "\n" +
-                "Fecha Reserva: " + fecha.toString() + "\n";
+        String cadena =
+                "\nID Reserva: " + idReservaLibro + "\n\n" +
+                "Autor Libro: " + libro.getAutorLibro() + "\n\n" +
+                "Titulo Libro: " + libro.getNombreLibro() + "\n\n" +
+                "ISBN: " + libro.getISBN() + "\n\n" +
+                "Fecha Reserva: " + fechaReserva + "\n";
 
         return cadena;
     }
+
+
 }

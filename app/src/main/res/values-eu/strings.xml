@@ -1,34 +1,74 @@
 <resources>
     <string name="app_name">Biblioteca_TFG</string>
-    <string name="usuario">Usuario</string>
-    <string name="contrasena">Contraseña</string>
-    <string name="introduceUsuario">Introduce el usuario</string>
-    <string name="introduceContrasena">Introduce la contraseña</string>
-    <string name="acceder">Acceder</string>
+    <string name="usuario">Erabiltzailea</string>
+    <string name="contrasena">Pasahitza</string>
+    <string name="introduceUsuario">Sartu erabiltzailea</string>
+    <string name="introduceContrasena">Sartu pasahitza</string>
+    <string name="acceder">Sartu</string>
     <string name="upvehu">UPV/EHU</string>
     <string name="gaur">G.A.U.R.</string>
-    <string name="title_activity_informacion">Informacion</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_informacion">Informazioa</string>
 
-    <string name="biblioteca">Biblioteca</string>
-    <string name="ajustes">Ajustes</string>
-    <string name="reservarLibro">Reservar Libro</string>
-    <string name="cancelarReservaLibro">Cancelar Reserva</string>
-    <string name="consultarReservaLibro">Consultar Reserva</string>
+    <string name="biblioteca">Liburutegia</string>
+    <string name="ajustes">Ezarpenak</string>
+    <string name="reservarLibro">Liburu Erreserba</string>
+    <string name="cancelarReservaLibro">Erreserba Utzi</string>
+    <string name="consultarReservaLibro">Erreserba Kontsulta</string>
 
-    <string name="reservarAsiento">Reservar Asiento</string>
-    <string name="cancelarReservaAsiento">Cancelar Reserva</string>
-    <string name="consultarReservaAsiento">Consultar Reserva</string>
+    <string name="reservarAsiento">Eserleku Erreserba</string>
+    <string name="cancelarReservaAsiento">Erreserba Utzi</string>
+    <string name="consultarReservaAsiento">Erreserba Kontsulta</string>
 
-    <string name="autorDelLibro">Autor del libro</string>
-    <string name="ISBNdelLibro">ISBN del libro</string>
-    <string name="nombreDelLibro">Nombre del libro</string>
-    <string name="descripcionDelLibro">Descripción del libro</string>
+    <string name="autorDelLibro">Liburuaren egilea: </string>
+    <string name="ISBNdelLibro">Liburuaren ISBN-a: </string>
+    <string name="nombreDelLibro">Liburuaren Izena</string>
+    <string name="tituloDelLibro">Liburuaren Izena: </string>
+    <string name="descripcionDelLibro">Liburuaren Deskribapena</string>
 
-    <string name="estadoReserva">Estado de la reserva</string>
+    <string name="estadoReserva">Erreserbaren egoera</string>
 
-    <string name="aceptar">Aceptar</string>
-    <string name="mesa">M\nE\nS\nA</string>
+    <string name="aceptar">Baieztu</string>
+    <string name="mesa">M\nA\nI\nL\nA</string>
+
+    <string name="informacion">Ongi etorri EHUko Ingeniaritza Eskolako liburutegia erreserbatzeko eta kudeatzeko aplikazio berrira. \n Aplikazio berri honekin, leku bat gorde ahal izango duzu bilbiotekan ikasi ahal izateko, bai eta behar dituzun liburuak liburutegian gorde ere.
+    </string>
+
+    <string name="direccion">Bilboko Ingeniaritza Eskola, Rafael Moreno Pitxitxi kalea, 2-3, 48013 Bilbao, Bizkaia</string>
+
+    <string name="bienvenido">Ongi etorri EHU - Liburutegira</string>
+
+    <string name="olvidoContrasena">Pasahitza ahaztu duzu?</string>
+
+    <string name="horarioBiblioteca">Liburutegiaren ordutegia</string>
+
+    <string name="valorarAPP">Baloratu aplikazioa</string>
+
+    <string name="idioma.castellano">Gaztelania</string>
+    <string name="idioma.euskera">Euskara</string>
+
+    <string name="horasBiblioteca">Astelehena   9:00–20:30 \nAsteartea   9:00–20:30\nAsteazkena  9:00–20:00\nOsteguna  9:00–20:00\nOstirala  9:00–20:00\nLarunbata  Itxita\nIgandea  Itxita</string>
+
+
+    <string name="consultaReserva.fechaReserva">Fecha de la reserva</string>
+    <string name="consultaReserva.listaReservas">Reservas Realizadas</string>
+    <string name="consultaReserva.idReserva">ID de la Reserva</string>
+    <string name="consultaReserva.estadoProceso">EN PROCESO</string>
+    <string name="consultaReserva.estadoCompletado">COMPLETADO</string>
+
+    <string name="listaLibros.librosDisponibles">Libros Disponibles</string>
+
+
+    <string name="ajustes.appNoInstalada">La aplicacion no esta instalada</string>
+    <string name="ajustes.cambioContrasena">Modificar la contraseña</string>
+    <string name="ajustes.seleccionaIdioma">Selecciona un idioma</string>
+    <string name="ajustes.guardar">Gorde</string>
+
+    <string name="cancelarReserva.descripcion">Por favor, introduce el ID de la reserva que quieres cancelar</string>
+    <string name="cancelarReserva.introduceCodigo">Introduce el codigo</string>
+    <string name="cancelarReserva.idNoEncontrado">El código introducido no se encuentra en su lista de reservas. Por favor, compruebe que ha escrito bien el ID del código</string>
+    <string name="cancelarReserva.idEncontrado">La reserva del libro ha sido cancelada</string>
+    <string name="cancelarReserva.estadoCompletado">La reserva de este libro está completada, no se puede eliminar de la lista.</string>
+
+    <string name="reservarAsiento.reservarAsientoFecha">Selecciona una fecha</string>
+    <string name="reservarAsiento.fecha">Selecciona una fecha</string>
 </resources>

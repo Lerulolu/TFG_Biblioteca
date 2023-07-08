@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,50 +11,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoginActivity"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/verde"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnAjustesLogin"
+                    android:layout_width="38dp"
+                    android:layout_height="36dp"
+                    android:background="@color/verde"
+                    android:foreground="@drawable/ajustes"
+                    android:foregroundTint="#FF9800"
+                    android:src="@drawable/ajustes"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                    />
 
 
-            <ImageButton
-                android:id="@+id/btnAjustes"
-                android:layout_width="34dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="9dp"
-                android:background="@color/verde"
-                android:foreground="@drawable/ajustes"
-                android:foregroundTint="#FF9800"
-                android:src="@drawable/ajustes"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="70dp"
                 android:text="@string/tituloAplicacion"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:layout_weight="1"
+                android:textAlignment="center"/>
 
-            <ImageButton
-                android:id="@+id/btnSalir"
-                android:layout_width="34dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="9dp"
-                android:background="@color/verde"
-                android:foregroundTint="#FF9800"
-                android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_lock_power_off"
-                app:tint="#FF9800"
-                tools:ignore="TouchTargetSizeCheck" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnInformacion"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@color/verde"
+                    android:foregroundTint="#FF9800"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/ic_dialog_info"
+                    app:tint="#FF9800"
+                    tools:ignore="TouchTargetSizeCheck"
+                    />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
@@ -102,7 +119,8 @@
                 android:background="@drawable/borde_negro"
                 android:gravity="center"
                 android:hint="@string/introduceContrasena"
-                android:minHeight="50dp" />
+                android:minHeight="50dp"
+                android:inputType="textPassword"/>
 
 
             <Button
@@ -111,6 +129,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="@string/acceder"
+                />
+
+            <Button
+                android:id="@+id/olvidoContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/olvidoContrasena"
                 />
 
 

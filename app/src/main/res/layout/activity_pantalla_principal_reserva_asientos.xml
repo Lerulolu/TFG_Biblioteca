@@ -126,12 +126,12 @@
                                 android:id="@+id/btnCancelarReservaAsiento"
                                 android:layout_width="110dp"
                                 android:layout_height="110dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
                                 android:background="@android:color/transparent"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/silla"
-                                app:tint="@color/rojoLibro"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"/>
+                                app:tint="@color/rojoLibro" />
                         </LinearLayout>
 
                         <LinearLayout

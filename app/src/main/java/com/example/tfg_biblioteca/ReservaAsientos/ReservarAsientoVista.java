@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -20,9 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tfg_biblioteca.Clases.Asiento;
 import com.example.tfg_biblioteca.Clases.Mesa;
-import com.example.tfg_biblioteca.Clases.Plantas;
 import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.PantallasApp.PantallaPrincipal;
+import com.example.tfg_biblioteca.PantallasApp.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -30,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,15 +36,19 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
     TextView idMesa;
 
-    Bundle bundle;
+    ImageButton btnSalir;
 
-    private Plantas planta;
+    Bundle bundle;
 
     private Mesa mesa;
 
     private Usuario usuario;
 
     private ArrayList<Asiento> listaAsientos;
+
+    private ArrayList<Integer> listaAsientosReservadosId;
+
+    String fechaReserva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +61,133 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        planta = (Plantas) bundle.getSerializable("planta");
         mesa = (Mesa) bundle.getSerializable("mesa");
-        usuario = (Usuario) bundle.getSerializable("usuario");
+        usuario = Utilidades.getMyUtilidades().obtenerUsuario(this);
+        fechaReserva = (String) bundle.getSerializable("fechaReserva");
+        btnSalir = findViewById(R.id.btnSalir);
 
         idMesa = findViewById(R.id.idMesa);
         idMesa.setText(""+mesa.getNumeroMesa());
 
+        obtenerAsientosReservadosEnFecha();
 
+        btnSalir.setOnClickListener(v -> Utilidades.getMyUtilidades().cerrarSesion(this));
+
+    }
+
+
+    private void mostrarAlertDialog(Asiento asiento){
+
+
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+
+        dialogo.setTitle("Realizar Reserva").
+                setMessage("¿Deseas realizar la reserva de este asiento?")
+                .setPositiveButton("Aceptar", (dialogInterface, i) -> {
+
+                    realizarReservaDeAsiento(usuario, asiento);
+
+                })
+                .setNegativeButton("Cancelar", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                });
+
+        AlertDialog dialog = dialogo.create();
+        dialog.show();
+
+    }
+
+    private void realizarReservaDeAsiento(Usuario usuario, Asiento asiento){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/realizarReservaAsiento.php",
+
+                response -> {
+
+                    String respuesta = response.trim();
+
+                    if(respuesta.equals("0")){
+                        Toast.makeText(this, "Ya tienes una reserva realizada para esta fecha", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+
+                        Toast.makeText(this, "Reserva del asiento realizada", Toast.LENGTH_LONG).show();
+
+                        Intent myIntent = new Intent(this, PantallaPrincipal.class);
+                        myIntent.putExtra("usuario", usuario);
+                        startActivity(myIntent);
+
+                    }
+
+
+                },
+                error -> Toast.makeText(this, "No se ha realizado la reserva del asiento", Toast.LENGTH_LONG).show()) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("idUsuario", ""+usuario.getIdUsuario());
+                params.put("idAsiento", ""+asiento.getIdAsiento());
+                params.put("fechaReserva", fechaReserva);
+                return params;
+            }
+        };
+
+        requestQueue.add(stringRequest);
+
+
+    }
+
+
+    private void obtenerAsientosReservadosEnFecha(){
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerAsientosReservadosEnFecha.php",
+
+                response -> {
+
+                    JSONArray jsonArray;
+
+                    listaAsientosReservadosId = new ArrayList<>();
+
+                    try {
+
+                        jsonArray = new JSONArray(response);
+
+                        for (int j = 0; j < jsonArray.length(); j++) {
+
+                            JSONObject jsonObject = jsonArray.getJSONObject(j);
+
+                            listaAsientosReservadosId.add(jsonObject.getInt("idAsiento"));
+
+                        }
+
+                        inicializarAsientosDeUnaMesa();
+
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                error -> Toast.makeText(this, "Los datos han sido mal recuperados", Toast.LENGTH_LONG).show()) {
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<>();
+                params.put("fechaReserva", fechaReserva);
+                return params;
+
+            }
+        };
+
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void inicializarAsientosDeUnaMesa(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -88,20 +207,10 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(j);
 
-                            int ocupado = jsonObject.getInt("ocupado");
-                            boolean estaOcupado;
-
-                            if(ocupado == 0){
-                                estaOcupado = false;
-                            }
-                            else{
-                                estaOcupado = true;
-                            }
-
                             Asiento asiento = new Asiento(
-                                jsonObject.getInt("idAsiento"),
-                                mesa, estaOcupado,
-                                jsonObject.getInt("numAsiento")
+                                    jsonObject.getInt("idAsiento"),
+                                    jsonObject.getInt("numAsiento"),
+                                    mesa
                             );
 
                             listaAsientos.add(asiento);
@@ -110,22 +219,21 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
                         for(int i = 0; i < listaAsientos.size(); i++){
 
+                            Asiento asientoAct = listaAsientos.get(i);
                             Button boton = new Button(this);
                             boton.setText(""+listaAsientos.get(i).getNumAsiento());
-                            boton.setTextSize(14);
-                            boton.setTag(listaAsientos.get(i));
+                            boton.setTextSize(18);
+                            boton.setId(i);
 
-                            int buttonId = View.generateViewId();
-                            boton.setId(buttonId);
+                            boton.setBackgroundColor(getColor(R.color.verde));
 
-                            if(!listaAsientos.get(i).isEstaOcupdo()){
-                                boton.setBackgroundColor(getColor(R.color.verde));
-                            }
-                            else{
+                            if(listaAsientosReservadosId.contains(asientoAct.getIdAsiento())){
                                 boton.setBackgroundColor(getColor(R.color.rojoLibro));
                                 boton.setEnabled(false);
-
                             }
+
+
+
 
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -142,49 +250,47 @@ public class ReservarAsientoVista extends AppCompatActivity {
                                 layoutIzq.addView(boton);
                             }
 
-                            boton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    // Accede al botón pulsado a través de la referencia "v"
-                                    Button clickedButton = (Button) v;
+                            boton.setOnClickListener(v -> {
 
-                                    // Obtiene el ID personalizado del botón pulsado
-                                    int clickedButtonCustomId = clickedButton.getId();
+                                Button clickedButton = (Button) v;
 
-                                    // Realiza acciones en función del botón pulsado
-                                    switch (clickedButtonCustomId) {
+                                int clickedButtonCustomId = clickedButton.getId();
 
-                                        case 1:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 2:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 3:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 4:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 5:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 6:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 7:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 8:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 9:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                        case 10:
-                                            mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                            break;
-                                    }
+                                switch (clickedButtonCustomId) {
+
+                                    case 0:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 1:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 2:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 3:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 4:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 5:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 6:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 7:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 8:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 9:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
+                                    case 10:
+                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
+                                        break;
                                 }
                             });
 
@@ -200,52 +306,6 @@ public class ReservarAsientoVista extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("idMesa", ""+mesa.getIdMesa());
-                return params;
-            }
-        };
-
-        requestQueue.add(stringRequest);
-
-    }
-
-    private void mostrarAlertDialog(Asiento asiento){
-
-
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-
-        dialogo.setTitle("Realizar Reserva").
-                setMessage("¿Deseas realizar la reserva de este asiento?")
-                .setPositiveButton("Aceptar", (dialogInterface, i) -> {
-
-                    realizarReservaDeAsiento(usuario, planta, mesa, asiento);
-
-                })
-                .setNegativeButton("Cancelar", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                });
-
-        AlertDialog dialog = dialogo.create();
-        dialog.show();
-
-    }
-
-    private void realizarReservaDeAsiento(Usuario usuario, Plantas planta, Mesa mesa, Asiento asiento){
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/realizarReservaAsiento.php",
-
-                response -> {
-                    Toast.makeText(this, "Reserva del libro realizada", Toast.LENGTH_LONG).show();
-                },
-                error -> Toast.makeText(this, "No se ha realizado la reserva del libro", Toast.LENGTH_LONG).show()) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("idUsuario", ""+usuario.getIdUsuario());
-                params.put("idPlanta", ""+planta.getIdPlanta());
-                params.put("idMesa", ""+mesa.getIdMesa());
-                params.put("idAsiento", ""+asiento.getIdAsiento());
                 return params;
             }
         };

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaLibros.ConsultarListaReservas">
+    tools:context=".ReservaLibros.ConsultarListaReservasLibro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,17 +46,43 @@
         </LinearLayout>
 
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
             android:orientation="vertical"
-            android:padding="16dp"
-            tools:context=".LoginActivity">
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.85">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center"
+                    android:text="@string/consultaReservaLibro.listaReservas"
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/borde_negro"
+                    />
+
+
+            </LinearLayout>
 
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/layoutListaReservas">
+                android:id="@+id/layoutListaConsultaReservas"
+                android:layout_weight="0.15"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/borde_negro"
+                tools:listitem="@layout/lista_reserva_libro">
 
 
             </ListView>

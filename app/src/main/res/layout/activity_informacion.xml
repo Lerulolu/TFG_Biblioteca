@@ -10,53 +10,150 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoginActivity"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@color/verde"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginRight="60dp"
                 android:text="@string/tituloAplicacion"
                 android:textColor="@color/white"
                 android:textSize="30dp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/btnSalir"
-                android:layout_width="34dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="17dp"
-                android:background="@color/verde"
-                android:foregroundTint="#FF9800"
-                android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_lock_power_off"
-                app:tint="#FF9800"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                android:textStyle="bold"
+                android:gravity="center"/>
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="520dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:context=".LoginActivity">
+            android:layout_height="80dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/bienvenido"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
 
         </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="460dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="460dp"
+                android:orientation="vertical"
+
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:text="@string/informacion" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:layout_marginTop="30dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@android:drawable/stat_sys_phone_call"
+                        app:tint="#000000"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/telefonoUni"
+                        android:layout_centerInParent="true"
+                        android:text="945 22 91 55"
+                        android:textSize="17dp"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@android:drawable/ic_dialog_email"
+                        app:tint="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:id="@+id/mailUniversidad"
+                        android:text="ehualumni@ehu.eus"
+                        android:textSize="17dp"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:srcCompat="@android:drawable/ic_dialog_map"
+                        android:layout_gravity="center"
+                        app:tint="#000000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:id="@+id/ubicacionUniversidad"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:text="@string/direccion"
+                        android:textSize="17dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

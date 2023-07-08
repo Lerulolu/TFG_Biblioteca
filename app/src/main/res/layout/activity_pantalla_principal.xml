@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoginActivity"
         >
 
         <LinearLayout
@@ -88,7 +87,7 @@
                                 android:background="@android:color/transparent"
                                 android:contentDescription="@string/app_name"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/libro"
+                                android:src="@drawable/libro_3"
                                 app:tint="@color/black" />
                         </LinearLayout>
 
