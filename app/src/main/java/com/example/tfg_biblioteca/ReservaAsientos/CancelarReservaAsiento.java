@@ -94,7 +94,6 @@ public class CancelarReservaAsiento extends AppCompatActivity {
 
             requestQueue.add(stringRequest);
 
-
         }
 
 
