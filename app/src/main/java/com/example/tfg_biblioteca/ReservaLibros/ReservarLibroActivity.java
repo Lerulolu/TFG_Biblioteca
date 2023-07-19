@@ -4,9 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,14 +17,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.PantallaPrincipal;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.PantallaPrincipalActivity;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,17 +27,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReservarLibro extends AppCompatActivity {
+public class ReservarLibroActivity extends AppCompatActivity {
 
-    TextView autorLibro, ISBNLibro, nombreLibro, descripcionLibro;
-
-    Button btnReservarLibro;
-
-    ImageView fotoLibro;
-
-    Bundle bundle;
-
-    ImageButton btnSalir;
+    private TextView autorLibro, ISBNLibro, nombreLibro, descripcionLibro;
+    private Button btnReservarLibro;
+    private ImageView fotoLibro;
+    private Bundle bundle;
+    private ImageButton btnSalir;
+    private Libro libro;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +44,8 @@ public class ReservarLibro extends AppCompatActivity {
         setContentView(R.layout.activity_reservar_libro);
 
         bundle = getIntent().getExtras();
-        Libro libro = (Libro) bundle.getSerializable("libro");
-        Usuario usuario = Utilidades.getMyUtilidades().obtenerUsuario(this);
+        libro = (Libro) bundle.getSerializable("libro");
+        usuario = Utilidades.getMyUtilidades().obtenerUsuario(this);
 
         autorLibro = findViewById(R.id.autorLibro);
         ISBNLibro = findViewById(R.id.ISBNLibro);
@@ -79,20 +70,18 @@ public class ReservarLibro extends AppCompatActivity {
 
             AlertDialog.Builder dialogo = new AlertDialog.Builder(view.getContext());
 
-            dialogo.setTitle("Realizar Reserva").
-                    setMessage("¿Deseas realizar la reserva de este libro?")
-                    .setPositiveButton("Aceptar", (dialogInterface, i) -> {
+            dialogo.setTitle(R.string.reservaLibro_realizarReserva).
+                    setMessage(R.string.reservaLibro_deseaReservar)
+                    .setPositiveButton(R.string.aceptar, (dialogInterface, i) -> {
 
                         realizarReservaLibro(libro, usuario, "http://192.168.0.37:80/proyecto_tfg/realizarReserva.php");
 
-                        Intent myIntent = new Intent(view.getContext(), PantallaPrincipal.class);
+                        Intent myIntent = new Intent(view.getContext(), PantallaPrincipalActivity.class);
                         myIntent.putExtra("usuario", usuario);
                         startActivity(myIntent);
 
                     })
-                    .setNegativeButton("Cancelar", (dialogInterface, i) -> {
-                        dialogInterface.dismiss();
-                    });
+                    .setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dialogInterface.dismiss());
 
             AlertDialog dialog = dialogo.create();
             dialog.show();
@@ -111,9 +100,9 @@ public class ReservarLibro extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
 
                 response -> {
-                    Toast.makeText(this, "Reserva del libro realizada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.reservaLibro_reservaRealizada, Toast.LENGTH_LONG).show();
                 },
-                error -> Toast.makeText(this, "No se ha realizado la reserva del libro", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
 

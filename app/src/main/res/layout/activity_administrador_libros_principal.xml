@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaAsientos.ConsultarListaReservasAsientoActivity">
+    tools:context=".Administrador.GestionLibros.AdministradorLibrosPrincipalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,8 +46,6 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
@@ -56,34 +54,60 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_weight="0.85">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="left|center"
-                    android:text="@string/consultarReservaAsiento.listaReservas"
+                    android:text="GESTION LIBROS"
+                    android:textSize="30dp"
                     android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:background="@drawable/borde_negro"
                     />
-
 
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/layoutListaConsultaReservasAsientos"
-                android:layout_weight="0.15"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/borde_negro"
-                tools:listitem="@layout/lista_reserva_asiento">
-            </ListView>
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnAnadir"
+                    android:text="Añadir Libro"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnModificarLibro"
+                    android:text="Modificar Libro"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnEliminarLibro"
+                    android:text="Eliminar Libro"/>
+
+            </LinearLayout>
+
 
 
 
@@ -112,5 +136,6 @@
 
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

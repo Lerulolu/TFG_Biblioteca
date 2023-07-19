@@ -27,6 +27,10 @@
     <string name="cancelarReservaLibro.idEncontrado">La reserva del libro ha sido cancelada</string>
     <string name="cancelarReservaLibro.estadoCompletado">La reserva de este libro está completada, no se puede eliminar de la lista.</string>
 
+    <string name="reservaLibro.realizarReserva">Realizar Reserva</string>
+    <string name="reservaLibro.deseaReservar">¿Deseas realizar la reserva de este libro?</string>
+    <string name="reservaLibro.reservaRealizada">Reserva del libro realizada</string>
+
 
     <!-- ////////////////////////////// -->
     <!-- ///////     SILLAS    //////// -->
@@ -37,6 +41,9 @@
     <string name="reservarAsiento.mesa">M\nE\nS\nA</string>
     <string name="reservarAsiento.seleccionPlanta">Planta</string>
     <string name="reservarAsiento.seleccionMesa">Mesa</string>
+    <string name="reservarAsiento.fechaReserva">Por favor, introduce una fecha</string>
+    <string name="reservarAsiento.reservaYaRealizada">Ya tienes una reserva realizada para esta fecha</string>
+    <string name="reservarAsiento.biblioCerrada">La biblioteca esta cerrada este dia</string>
 
     <string name="cancelarReservaAsiento.cancelarReserva">Cancelar Reserva</string>
     <string name="cancelarReservaAsiento.descripcion">Por favor, introduce el ID de la reserva que quieres cancelar</string>
@@ -51,7 +58,9 @@
     <string name="consultarReservaAsiento.numMesa">Número Mesa: </string>
     <string name="consultarReservaAsiento.numAsiento">Número Asiento: </string>
     <string name="consultarReservaAsiento.listaReservas">Reservas Realizadas</string>
-
+    <string name="consultarReservaAsiento.errorRecuperReservas">Error al recuperar las reservas del usuario</string>
+    <string name="reservaAsiento.deseaReservar">¿Deseas realizar la reserva de este asiento?</string>
+    <string name="reservaAsiento.reservaRealizada">Reserva del asiento realizada</string>
 
     <!-- ////////////////////////////// -->
     <!-- ///////     OTROS     //////// -->
@@ -63,6 +72,7 @@
     <string name="introduceContrasena">Introduce la contraseña</string>
     <string name="acceder">Acceder</string>
     <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
     <string name="upvehu">UPV/EHU</string>
     <string name="tituloAplicacion">EHU Liburutegia </string>
     <string name="biblioteca">Biblioteca</string>
@@ -80,23 +90,23 @@
         HORARIOS DE LA BIBLIOTECA \n\nLunes  9:00–20:30 \n\nMartes  9:00–20:30\n\nMiércoles  9:00–20:00\n\nJueves  9:00–20:00\n\nViernes  9:00–20:00\n\nSábado  Cerrado\n\nDomingo  Cerrado\n\nSi tienes cualquier duda te dejamos nuestros contactos para que podamos resolvertelas.
 
     </string>
-
+    <string name="errorGenerico">Ha habido un error en la operación</string>
     <string name="horasBiblioteca">Lunes  9:00–20:30 \nMartes  9:00–20:30\nMiércoles  9:00–20:00\nJueves  9:00–20:00\nViernes  9:00–20:00\nSábado  Cerrado\nDomingo  Cerrado</string>
-
     <string name="informacion.noEncuentraMAPS">No tienes google MAPS instalado</string>
-
     <string name="direccion">Escuela de Ingeniería de Bilbao, Calle Rafael Moreno Pitxitxi, 2-3, 48013 Bilbao, Vizcaya</string>
-
     <string name="bienvenido">Bienvenido a EHU - Liburutegia</string>
-
     <string name="olvidoContrasena">¿Olvidó su contraseña?</string>
-
     <string name="horarioBiblioteca">Horario de la Biblioteca</string>
-
     <string name="valorarAPP">Valorar Aplicación</string>
-
     <string name="idioma.castellano">Castellano</string>
     <string name="idioma.euskera">Euskera</string>
+    <string name="loginDatos">Por favor introduce los datos del Log in</string>El usuario o la contraseña es erróneo
+    <string name="loginErroneo">El usuario o la contraseña es erróneo</string>
+    <string name="enviarCorreo">Enviar Correo</string>
+    <string name="cerrarSesion">Cerrar Sesión</string>
+    <string name="cerrarSesionConfirmacion">¿Estas seguro de que quieres salir de la aplicación?</string>
+
+
 
     <!-- ////////////////////////////// -->
     <!-- ///////     AJUSTES   //////// -->
@@ -108,8 +118,28 @@
     <string name="ajustes.guardar">Guardar</string>
 
 
-
-
+    <!-- ////////////////////////////// -->
+    <!-- /////  ADMINISTRADOR   /////// -->
+    <!-- ////////////////////////////// -->
+    <string name="administrador.nombreUsuario">Nombre Administrador</string>
+    <string name="administrador.insertaNombreLibro">Por favor, inserta un título para el libro</string>
+    <string name="administrador.insertaAutorLibro">Por favor, inserta un autor para el libro</string>
+    <string name="administrador.insertaISBNLibro">Por favor, inserta un ISBN para el libro</string>
+    <string name="administrador.insertaDescripcionLibro">Por favor, inserta una descripción para el libro</string>
+    <string name="administrador.libroAnadido">Se ha añadido el libro correctamente</string>
+    <string name="administrador.libroModificado">Se ha modificado el libro correctamente</string>
+    <string name="administrador.libroEliminado">Se ha eliminado el libro correctamente</string>
+    <string name="administrador.anadir">Añadir</string>
+    <string name="administrador.modificar">Modificar</string>
+    <string name="administrador.eliminar">Eliminar</string>
+    <string name="administrador.eliminarPregunta">¿Desea eliminar este libro del sistema?</string>
+    <string name="administrador.modificarPregunta">¿Desea modificar este libro en el sistema?</string>
+    <string name="administrador.anadirPregunta">¿Desea añadir este libro al sistema?</string>
+    <string name="administrador.editarAlumno">¿Desea editar este alumno en el sistema?</string>
+    <string name="administrador.insertaNombreAlumno">Por favor introduce un nombre para el alumno</string>
+    <string name="administrador.insertaLDAP">Por favor introduce un LDAP para el alumno</string>
+    <string name="administrador.alumnoActualizado">Se ha actualizado el Alumno</string>
+    <string name="administrador.noAlumnoActualizado">No se ha podido actualizar el Alumnoo</string>
 
 
 </resources>

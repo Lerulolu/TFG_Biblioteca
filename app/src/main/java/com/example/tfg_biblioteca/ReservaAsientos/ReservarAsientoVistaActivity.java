@@ -18,8 +18,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.tfg_biblioteca.Clases.Asiento;
 import com.example.tfg_biblioteca.Clases.Mesa;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.PantallaPrincipal;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.PantallaPrincipalActivity;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -30,25 +30,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReservarAsientoVista extends AppCompatActivity {
+public class ReservarAsientoVistaActivity extends AppCompatActivity {
 
-    LinearLayout layoutIzq, layoutDrc;
-
-    TextView idMesa;
-
-    ImageButton btnSalir;
-
-    Bundle bundle;
-
+    private LinearLayout layoutIzq, layoutDrc;
+    private TextView idMesa;
+    private ImageButton btnSalir;
+    private Bundle bundle;
     private Mesa mesa;
-
     private Usuario usuario;
-
     private ArrayList<Asiento> listaAsientos;
-
     private ArrayList<Integer> listaAsientosReservadosId;
-
-    String fechaReserva;
+    private String fechaReserva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +73,14 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
         AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
 
-        dialogo.setTitle("Realizar Reserva").
-                setMessage("¿Deseas realizar la reserva de este asiento?")
-                .setPositiveButton("Aceptar", (dialogInterface, i) -> {
+        dialogo.setTitle(R.string.reservaLibro_realizarReserva).
+                setMessage(R.string.reservaAsiento_deseaReservar)
+                .setPositiveButton(R.string.aceptar, (dialogInterface, i) -> {
 
                     realizarReservaDeAsiento(usuario, asiento);
 
                 })
-                .setNegativeButton("Cancelar", (dialogInterface, i) -> {
+                .setNegativeButton(R.string.cancelar, (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                 });
 
@@ -108,13 +100,13 @@ public class ReservarAsientoVista extends AppCompatActivity {
                     String respuesta = response.trim();
 
                     if(respuesta.equals("0")){
-                        Toast.makeText(this, "Ya tienes una reserva realizada para esta fecha", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.reservarAsiento_reservaYaRealizada, Toast.LENGTH_LONG).show();
                     }
                     else{
 
-                        Toast.makeText(this, "Reserva del asiento realizada", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.reservaAsiento_reservaRealizada, Toast.LENGTH_LONG).show();
 
-                        Intent myIntent = new Intent(this, PantallaPrincipal.class);
+                        Intent myIntent = new Intent(this, PantallaPrincipalActivity.class);
                         myIntent.putExtra("usuario", usuario);
                         startActivity(myIntent);
 
@@ -122,7 +114,7 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
 
                 },
-                error -> Toast.makeText(this, "No se ha realizado la reserva del asiento", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
 
             @Override
             protected Map<String, String> getParams() {
@@ -172,7 +164,7 @@ public class ReservarAsientoVista extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 },
-                error -> Toast.makeText(this, "Los datos han sido mal recuperados", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
 
@@ -232,9 +224,6 @@ public class ReservarAsientoVista extends AppCompatActivity {
                                 boton.setEnabled(false);
                             }
 
-
-
-
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -256,42 +245,8 @@ public class ReservarAsientoVista extends AppCompatActivity {
 
                                 int clickedButtonCustomId = clickedButton.getId();
 
-                                switch (clickedButtonCustomId) {
+                                mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
 
-                                    case 0:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 1:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 2:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 3:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 4:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 5:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 6:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 7:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 8:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 9:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                    case 10:
-                                        mostrarAlertDialog(listaAsientos.get(clickedButtonCustomId));
-                                        break;
-                                }
                             });
 
 
@@ -301,7 +256,7 @@ public class ReservarAsientoVista extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 },
-                error -> Toast.makeText(this, "Los datos han sido mal recuperados", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

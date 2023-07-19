@@ -21,6 +21,8 @@ public class AdaptadorReservaAsiento extends ArrayAdapter<ReservaAsiento> implem
 
     private List<ReservaAsiento> listaReservasAsientos;
 
+    private ReservaAsiento reservaAsiento;
+
     public AdaptadorReservaAsiento(Context context, List<ReservaAsiento> reservaAsientos) {
         super(context, 0, reservaAsientos);
         listaReservasAsientos = new ArrayList<>(reservaAsientos);
@@ -34,7 +36,7 @@ public class AdaptadorReservaAsiento extends ArrayAdapter<ReservaAsiento> implem
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.lista_reserva_asiento, parent, false);
         }
 
-        ReservaAsiento reservaAsiento = getItem(position);
+         reservaAsiento = getItem(position);
 
         TextView idReserva_fila = convertView.findViewById(R.id.idReserva_fila);
         TextView fechaReserva_fila = convertView.findViewById(R.id.fechaReserva_fila);

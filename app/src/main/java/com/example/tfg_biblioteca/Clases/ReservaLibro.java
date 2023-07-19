@@ -12,10 +12,6 @@ public class ReservaLibro implements Serializable {
     private String fechaReserva;
     private Usuario usuario;
 
-    public ReservaLibro() {
-
-    }
-
     public ReservaLibro(int idReservaLibro, String fecha) {
         this.idReservaLibro = idReservaLibro;
         this.fechaReserva = fecha;
@@ -58,18 +54,6 @@ public class ReservaLibro implements Serializable {
 
     public void setUsuario(Usuario idUsuario) {
         this.usuario = idUsuario;
-    }
-
-    @Override
-    public String toString() {
-        String cadena =
-                "\nID Reserva: " + idReservaLibro + "\n\n" +
-                "Autor Libro: " + libro.getAutorLibro() + "\n\n" +
-                "Titulo Libro: " + libro.getNombreLibro() + "\n\n" +
-                "ISBN: " + libro.getISBN() + "\n\n" +
-                "Fecha Reserva: " + fechaReserva + "\n";
-
-        return cadena;
     }
 
 

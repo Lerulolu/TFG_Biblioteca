@@ -1,6 +1,5 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,9 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tfg_biblioteca.Adaptadores.AdaptadorLibro;
 import com.example.tfg_biblioteca.Clases.Libro;
-import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -27,17 +24,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ReservarListaLibros extends AppCompatActivity {
+public class ReservarListaLibrosActivity extends AppCompatActivity {
 
     private ArrayList<Libro> listaLibros;
-
-    ListView listViewLibros;
-
+    private ListView listViewLibros;
     private AdaptadorLibro adapter;
-
-    ImageButton btnSalir;
-
-    SearchView busquedaLibro;
+    private ImageButton btnSalir;
+    private SearchView busquedaLibro;
+    private Libro libroElegido, libro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +50,8 @@ public class ReservarListaLibros extends AppCompatActivity {
 
         listViewLibros.setOnItemClickListener((adapterView, view, i, l) -> {
 
-            Intent myIntent = new Intent(view.getContext(), ReservarLibro.class);
-            Libro libroElegido = listaLibros.get(i);
+            Intent myIntent = new Intent(view.getContext(), ReservarLibroActivity.class);
+            libroElegido = listaLibros.get(i);
             myIntent.putExtra("libro",libroElegido);
             startActivity(myIntent);
 
@@ -87,7 +81,7 @@ public class ReservarListaLibros extends AppCompatActivity {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                            Libro libro = new Libro(
+                            libro = new Libro(
                                     jsonObject.getInt("idLibro"),
                                     jsonObject.getString("ISBN"),
                                     jsonObject.getString("tituloLibro"),
@@ -105,7 +99,6 @@ public class ReservarListaLibros extends AppCompatActivity {
                         busquedaLibro.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                             @Override
                             public boolean onQueryTextSubmit(String s) {
-                              //  adapter.getFilter().filter(s);
                                 return false;
                             }
 
@@ -122,7 +115,7 @@ public class ReservarListaLibros extends AppCompatActivity {
 
                 },
                 error -> {
-                    Toast.makeText(this, "No se han podido recuperar los objetos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show();
                 });
 
         requestQueue.add(stringRequest);

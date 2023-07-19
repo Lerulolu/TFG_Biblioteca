@@ -21,6 +21,8 @@ public class AdaptadorReservaLibro extends ArrayAdapter<ReservaLibro> implements
 
     private List<ReservaLibro> listaReservasLibros;
 
+    private ReservaLibro reservaLibro;
+
     public AdaptadorReservaLibro(Context context, List<ReservaLibro> reservaLibros) {
         super(context, 0, reservaLibros);
         listaReservasLibros = new ArrayList<>(reservaLibros);
@@ -34,7 +36,7 @@ public class AdaptadorReservaLibro extends ArrayAdapter<ReservaLibro> implements
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.lista_reserva_libro, parent, false);
         }
 
-        ReservaLibro reservaLibro = getItem(position);
+        reservaLibro = getItem(position);
 
         TextView idReserva_fila = convertView.findViewById(R.id.idReserva_fila);
         TextView fechaReserva_fila = convertView.findViewById(R.id.fechaReserva_fila);

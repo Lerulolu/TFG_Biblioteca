@@ -1,16 +1,8 @@
 package com.example.tfg_biblioteca.Clases;
 
-import static com.example.tfg_biblioteca.PantallasApp.Ajustes.cambiarIdioma;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tfg_biblioteca.R;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Planta extends AppCompatActivity implements Serializable {
 
@@ -40,8 +32,5 @@ public class Planta extends AppCompatActivity implements Serializable {
         this.numPlanta = numPlanta;
     }
 
-    @Override
-    public String toString() {
-        return  "Planta "+numPlanta;
-    }
+
 }

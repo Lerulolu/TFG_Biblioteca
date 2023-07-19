@@ -1,33 +1,25 @@
-package com.example.tfg_biblioteca.PantallasApp;
+package com.example.tfg_biblioteca.ControladorUsuarioComun;
 
-import static com.example.tfg_biblioteca.PantallasApp.Ajustes.cambiarIdioma;
+import static com.example.tfg_biblioteca.ControladorUsuarioComun.AjustesActivity.cambiarIdioma;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tfg_biblioteca.Administrador.PantallaPrincipalAdministradorActivity;
 import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.R;
 
@@ -39,14 +31,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    EditText contrasenaUsuario, ldapUsuario;
-    Button btnLogin, olvidoContrasena;
-    ImageButton btnAjustesLogin, btnInformacion;
+    private EditText contrasenaUsuario, ldapUsuario;
+    private Button btnLogin, olvidoContrasena;
+    private ImageButton btnAjustesLogin, btnInformacion;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +76,13 @@ public class Login extends AppCompatActivity {
 
         btnInformacion.setOnClickListener(view -> {
 
-            Intent myIntent = new Intent(view.getContext(), Informacion.class);
+            Intent myIntent = new Intent(view.getContext(), InformacionActivity.class);
             startActivity(myIntent);
 
         });
 
         btnAjustesLogin.setOnClickListener(view -> {
-            Intent myIntent = new Intent(view.getContext(), Ajustes.class);
+            Intent myIntent = new Intent(view.getContext(), AjustesActivity.class);
             startActivity(myIntent);
         });
 
@@ -114,7 +106,7 @@ public class Login extends AppCompatActivity {
 
         if(contrasenaUsuario.getText().toString().equals("") || ldapUsuario.getText().toString().equals("")){
 
-            Toast.makeText(Login.this, "Por favor introduce los datos del Log in", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, R.string.loginDatos, Toast.LENGTH_LONG).show();
 
         }
         else{
@@ -132,32 +124,38 @@ public class Login extends AppCompatActivity {
                             jsonArray = new JSONArray(response);
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-                            Usuario usuario = new Usuario(
+                            usuario = new Usuario(
                                     jsonObject.getInt("idUsuario"),
                                     jsonObject.getInt("ldapUsuario"),
                                     jsonObject.getString("nombreUsuario"),
-                                    jsonObject.getString("contrasenaUsuario"));
+                                    jsonObject.getString("contrasenaUsuario"),
+                                    jsonObject.getInt("tipoUsuario"));
 
                             if (usuario != null) {
-
                                 usuarioASharedPreferences(usuario);
-
-                                Intent myIntent = new Intent(this, PantallaPrincipal.class);
-                                myIntent.putExtra("usuario", usuario);
-                                startActivity(myIntent);
+                                //Si es un alumno
+                                if(usuario.getTipoUsuario() == 0){
+                                    Intent myIntent = new Intent(this, PantallaPrincipalActivity.class);
+                                    startActivity(myIntent);
+                                }
+                                //Si es un administrador
+                                else{
+                                    Intent myIntent = new Intent(this, PantallaPrincipalAdministradorActivity.class);
+                                    startActivity(myIntent);
+                                }
 
                             }
                             else{
-                                Toast.makeText(this, "Ha habido un error en el Log in", Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show();
                             }
 
 
                         } catch (JSONException e) {
-                            Toast.makeText(this, "El usuario o la contraseña es erróneo", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, R.string.loginErroneo, Toast.LENGTH_LONG).show();
                         }
 
                     },
-                    error -> Toast.makeText(this, "Ha habido un error en el Login", Toast.LENGTH_LONG).show()) {
+                    error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();

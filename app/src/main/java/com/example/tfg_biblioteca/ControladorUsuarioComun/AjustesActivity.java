@@ -1,37 +1,30 @@
-package com.example.tfg_biblioteca.PantallasApp;
+package com.example.tfg_biblioteca.ControladorUsuarioComun;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.tfg_biblioteca.Clases.Usuario;
 import com.example.tfg_biblioteca.R;
 
 import java.util.Locale;
 
-public class Ajustes extends AppCompatActivity {
+public class AjustesActivity extends AppCompatActivity {
 
-    Button valorarAPP;
-    Button btnGuardarIdioma;
-    Spinner spinnerIdiomas;
-
+    private Button valorarAPP;
+    private Button btnGuardarIdioma;
+    private Spinner spinnerIdiomas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,28 +86,25 @@ public class Ajustes extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Maneja el caso cuando no se ha seleccionado ningún idioma
+
             }
         });
 
         valorarAPP.setOnClickListener(view -> valorarApp());
 
-        btnGuardarIdioma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnGuardarIdioma.setOnClickListener(view -> {
 
-                if(spinnerIdiomas.getSelectedItemPosition() == 0){
-                    cambiarIdioma("es", getResources(), view.getContext());
-                }
-                else{
-                    cambiarIdioma("eu", getResources(), view.getContext());
-                }
-
-                Intent myIntent = new Intent(view.getContext(), Login.class);
-                myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(myIntent);
-
+            if(spinnerIdiomas.getSelectedItemPosition() == 0){
+                cambiarIdioma("es", getResources(), view.getContext());
             }
+            else{
+                cambiarIdioma("eu", getResources(), view.getContext());
+            }
+
+            Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(myIntent);
+
         });
     }
 
@@ -141,7 +131,6 @@ public class Ajustes extends AppCompatActivity {
         config.locale = locale;
         resources.updateConfiguration(config, resources.getDisplayMetrics());
 
-        // Guardar el idioma seleccionado en las preferencias compartidas para que persista entre sesiones
         SharedPreferences.Editor editor = context.getSharedPreferences("idioma", Context.MODE_PRIVATE).edit();
         editor.putString("idioma", codigoIdioma);
         editor.apply();

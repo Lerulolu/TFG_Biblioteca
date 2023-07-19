@@ -10,10 +10,6 @@ public class Mesa implements Serializable {
     private int numeroMesa;
     private Planta planta;
 
-    public Mesa(){
-
-    }
-
     public Mesa(int idMesa, int numeroMesa, Planta planta) {
         this.idMesa = idMesa;
         this.numeroMesa = numeroMesa;
@@ -44,8 +40,4 @@ public class Mesa implements Serializable {
         this.planta = planta;
     }
 
-    @Override
-    public String toString() {
-        return  "Mesa "+numeroMesa;
-    }
 }

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaAsientos.ConsultarListaReservasAsientoActivity">
+    tools:context=".Administrador.PantallaPrincipalAdministradorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoginActivity"
         >
 
         <LinearLayout
@@ -46,8 +45,6 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
@@ -56,34 +53,69 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_weight="0.85">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="left|center"
-                    android:text="@string/consultarReservaAsiento.listaReservas"
+                    android:text="ADMINISTRADOR"
+                    android:textSize="30dp"
                     android:textAlignment="center"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:background="@drawable/borde_negro"
                     />
-
 
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/layoutListaConsultaReservasAsientos"
-                android:layout_weight="0.15"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/borde_negro"
-                tools:listitem="@layout/lista_reserva_asiento">
-            </ListView>
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
+                android:background="@drawable/borde_negro">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center"
+                    android:text="@string/administrador.nombreUsuario"
+                    android:textStyle="bold"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/nombreUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left|center"
+                    android:padding="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnGestionUsuario"
+                    android:text="Gestion Usuario"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnGestionLibro"
+                    android:text="Gestion Libros"/>
+
+            </LinearLayout>
+
 
 
 

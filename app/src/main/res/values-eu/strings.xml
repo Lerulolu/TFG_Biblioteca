@@ -27,6 +27,9 @@
     <string name="cancelarReservaLibro.idEncontrado">Liburuaren erreserba bertan behera utzi da</string>
     <string name="cancelarReservaLibro.estadoCompletado">Liburu honen erreserba osatuta dago, ezin da zerrendatik ezabatu.</string>
 
+    <string name="reservaLibro.realizarReserva">Erreserba Egin</string>
+    <string name="reservaLibro.deseaReservar">¿Liburu honen erreserba egin nahi al duzu?</string>
+    <string name="reservaLibro.reservaRealizada">Liburuaren erreserba eginda</string>
 
     <!-- ////////////////////////////// -->
     <!-- ///////     SILLAS    //////// -->
@@ -63,11 +66,12 @@
     <string name="introduceContrasena">Sartu pasahitza</string>
     <string name="acceder">Sartu</string>
     <string name="aceptar">Onartu</string>
+    <string name="cancelar">Ezeztatu</string>
     <string name="upvehu">UPV/EHU</string>
     <string name="tituloAplicacion">EHU Liburutegia </string>
     <string name="biblioteca">Liburutegia</string>
     <string name="ajustes">Ezarpenak</string>
-    <string name="reservarLibro">Aulkia Erreserbatu</string>
+    <string name="reservarLibro">Liburua Erreserbatu</string>
     <string name="cancelarReservaLibro">Erreserba Ezeztatu</string>
     <string name="consultarReservaLibro">Erreserba Kontsultatu</string>
     <string name="reservarAsiento">Aulkia Erreserbatu</string>
@@ -76,24 +80,19 @@
     <string name="gaur">G.A.U.R.</string>
     <string name="informacion">
 
-        Ongi etorri Bilboko EHUko Ingeniaritza Eskolako liburutegiaN erreserbatzeko eta kudeatzeko aplikazio berrira. Aplikazio berri honekin, bi aukera izango dituzu: batetik, liburutegian leku bat gorde ikasteko, eta, bestetik, behar dituzun liburuak liburutegian erreserbatu. \n\n
-        LIBURUTEGIKO ORDUTEGIA Astelehena  9:00–20:30 \nAsteartea  9:00–20:30\nAsteazkena  9:00–20:00\nOsteguna  9:00–20:00\nOstirala  9:00–20:00\nLarunbata  Itxita\nIgandea  Itxita\n\nZalantzarik baduzu, gure kontaktuak utziko dizkizugu, hauek argitu ahal izateko.
+        Ongi etorri Bilboko EHUko Ingeniaritza Eskolako liburutegian erreserbatzeko eta kudeatzeko aplikazio berrira. Aplikazio berri honekin, bi aukera izango dituzu: batetik, liburutegian leku bat gorde ikasteko, eta, bestetik, behar dituzun liburuak liburutegian erreserbatu. \n\n
+        LIBURUTEGIKO ORDUTEGIA Astelehena  9:00–20:30 \n\nAsteartea  9:00–20:30\n\nAsteazkena  9:00–20:00\n\nOsteguna  9:00–20:00\n\nOstirala  9:00–20:00\n\nLarunbata  Itxita\n\nIgandea  Itxita\n\nZalantzarik baduzu, gure kontaktuak utziko dizkizugu, hauek argitu ahal izateko.
 
     </string>
 
-
+    <string name="errorGenerico">Errore bat egon da eragiketan</string>
+    <string name="horasBiblioteca">Astelehena  9:00–20:30 \nAsteartea  9:00–20:30\nAsteazkena  9:00–20:00\nOsteguna  9:00–20:00\nOstirala  9:00–20:00\nLarunbata  Itxita\nIgandea  Itxita</string>
     <string name="informacion.noEncuentraMAPS">Ez duzu google MAPS instalatuta</string>
-
     <string name="direccion">Bilboko Ingeniaritza Eskola, Rafael Moreno Pitxitxi kalea, 2-3, 48013 Bilbao, Bizkaia</string>
-
     <string name="bienvenido">Ongi etorri EHU - Liburutegira</string>
-
     <string name="olvidoContrasena">Pasahitza ahaztu duzu?</string>
-
     <string name="horarioBiblioteca">Liburutegiko ordutegia</string>
-
     <string name="valorarAPP">Aplikazioa Baloratu</string>
-
     <string name="idioma.castellano">Gaztelania</string>
     <string name="idioma.euskera">Euskara</string>
 
@@ -107,8 +106,25 @@
     <string name="ajustes.guardar">Gorde</string>
 
 
+    <!-- ////////////////////////////// -->
+    <!-- /////  ADMINISTRADOR   /////// -->
+    <!-- ////////////////////////////// -->
+    <string name="administrador.nombreUsuario">Administratzaile izena</string>
+    <string name="administrador.insertaNombreLibro">Mesedez, sartu liburuaren izenburua</string>
+    <string name="administrador.insertaAutorLibro">Mesedez, sartu liburuaren idazlea</string>
+    <string name="administrador.insertaISBNLibro">Mesedez, sartu liburuaren ISBN-a</string>
+    <string name="administrador.insertaDescripcionLibro">Mesedez, sartu liburuaren deskribapena</string>
+    <string name="administrador.libroAnadido">Liburua arrakastaz gehitu da</string>
+    <string name="administrador.libroModificado">Liburua behar bezala aldatu da</string>
+    <string name="administrador.libroEliminado">Liburua behar bezala ezabatu da</string>
+    <string name="administrador.anadir">Gehitu</string>
+    <string name="administrador.modificar">Aldatu</string>
+    <string name="administrador.eliminar">Ezabatu</string>
+    <string name="administrador.eliminarPregunta">Liburu hau sistematik kendu nahi duzu?</string>
+    <string name="administrador.modificarPregunta">Liburu hau sisteman aldatu nahi duzu?</string>
+    <string name="administrador.anadirPregunta">Liburu hau sistemara gehitu nahi al duzu?</string>
+    <string name="administrador.editarAlumno">Ikasle hau sisteman editatu nahi duzu?</string>
 
 
-
-
+    
 </resources>

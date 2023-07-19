@@ -8,16 +8,22 @@ public class Usuario implements Serializable {
     private int ldapUsuario;
     private String contrasenaUsuario;
     private String nombreUsuario;
+    private int tipoUsuario;
 
     public Usuario() {
 
     }
 
-    public Usuario(int idUsuario, int ldapUsuario, String nombreUsuario, String contrasenaUsuario) {
+    public Usuario(int idUsuario, int ldapUsuario, String nombreUsuario, String contrasenaUsuario, int tipoUsuario) {
         this.idUsuario = idUsuario;
         this.ldapUsuario = ldapUsuario;
         this.contrasenaUsuario = contrasenaUsuario;
         this.nombreUsuario = nombreUsuario;
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Usuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public int getIdUsuario() {
@@ -50,5 +56,13 @@ public class Usuario implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public int getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

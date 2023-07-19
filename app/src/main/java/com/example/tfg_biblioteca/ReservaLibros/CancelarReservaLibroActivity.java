@@ -1,12 +1,10 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,27 +14,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tfg_biblioteca.Clases.ReservaLibro;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.PantallaPrincipal;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.PantallaPrincipalActivity;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CancelarReservaLibro extends AppCompatActivity {
+public class CancelarReservaLibroActivity extends AppCompatActivity {
 
-    Usuario usuario;
-    EditText codigoCancelacion;
-    Button btnAceptar;
-    ImageButton btnSalir;
+    private Usuario usuario;
+    private EditText codigoCancelacion;
+    private Button btnAceptar;
+    private ImageButton btnSalir;
 
 
     @Override
@@ -73,7 +64,7 @@ public class CancelarReservaLibro extends AppCompatActivity {
                     if (respuesta.equals("0")) {
 
                         Toast.makeText(this, R.string.cancelarReservaLibro_idEncontrado, Toast.LENGTH_LONG).show();
-                        Intent myIntent = new Intent(this, PantallaPrincipal.class);
+                        Intent myIntent = new Intent(this, PantallaPrincipalActivity.class);
                         myIntent.putExtra("usuario", usuario);
                         startActivity(myIntent);
 
@@ -92,7 +83,7 @@ public class CancelarReservaLibro extends AppCompatActivity {
 
 
                 },
-                error -> Toast.makeText(this, "Ha habido un error al cancelar la reserva", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
 
             @Override
             protected Map<String, String> getParams() {

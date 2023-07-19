@@ -1,23 +1,14 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.ReservaLibro;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import java.text.ParseException;
@@ -25,15 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ConsultarReservaLibro extends AppCompatActivity {
+public class ConsultarReservaLibroActivity extends AppCompatActivity {
 
-    TextView autorLibro, ISBNLibro, nombreLibro, estadoReserva, fechaReserva, idReserva;
-
-    ImageView fotoLibro;
-
-    Bundle bundle;
-
-    ImageButton btnSalir;
+    private TextView autorLibro, ISBNLibro, nombreLibro, estadoReserva, fechaReserva, idReserva;
+    private ImageView fotoLibro;
+    private Bundle bundle;
+    private ImageButton btnSalir;
+    private ReservaLibro reservaElegida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +41,7 @@ public class ConsultarReservaLibro extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
 
-        ReservaLibro reservaElegida = (ReservaLibro) bundle.getSerializable("reservaElegida");
+        reservaElegida = (ReservaLibro) bundle.getSerializable("reservaElegida");
 
         autorLibro.setText(reservaElegida.getLibro().getAutorLibro());
         ISBNLibro.setText(reservaElegida.getLibro().getISBN());

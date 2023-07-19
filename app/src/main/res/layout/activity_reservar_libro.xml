@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaLibros.ReservarLibro">
+    tools:context=".ReservaLibros.ReservarLibroActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -191,22 +191,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btnReservarLibro"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/reservarLibro"
-                tools:ignore="TouchTargetSizeCheck"
-
-                />
 
         </LinearLayout>
 

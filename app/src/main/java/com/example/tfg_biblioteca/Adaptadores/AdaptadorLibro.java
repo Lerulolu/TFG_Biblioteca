@@ -27,6 +27,7 @@ public class AdaptadorLibro extends ArrayAdapter<Libro> implements Filterable {
     private List<Libro> listaLibros;
     private List<Libro> listaLibrosFiltrados;
     private LibroFilter filtro;
+    private Libro libro;
 
     public AdaptadorLibro(Context context, List<Libro> libros) {
         super(context, 0, libros);
@@ -42,7 +43,7 @@ public class AdaptadorLibro extends ArrayAdapter<Libro> implements Filterable {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.lista_libros, parent, false);
         }
 
-        Libro libro = getItem(position);
+        libro = getItem(position);
 
         TextView autorLibro = convertView.findViewById(R.id.autorLibro_fila);
         TextView ISBN = convertView.findViewById(R.id.ISBN_fila);

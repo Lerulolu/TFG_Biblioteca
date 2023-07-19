@@ -1,13 +1,9 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,8 +16,7 @@ import com.example.tfg_biblioteca.Adaptadores.AdaptadorReservaLibro;
 import com.example.tfg_biblioteca.Clases.Libro;
 import com.example.tfg_biblioteca.Clases.ReservaLibro;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -32,17 +27,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConsultarListaReservasLibro extends AppCompatActivity {
+public class ConsultarListaReservasLibroActivity extends AppCompatActivity {
 
-    Usuario usuario;
-
-    ListView layoutListaConsultaReservas;
-
-    ArrayList<ReservaLibro> listaReservasLibros;
-
-    ImageButton btnSalir;
-
-    AdaptadorReservaLibro adapter;
+    private Usuario usuario;
+    private ListView layoutListaConsultaReservas;
+    private ArrayList<ReservaLibro> listaReservasLibros;
+    private ImageButton btnSalir;
+    private AdaptadorReservaLibro adapter;
+    private ReservaLibro reservaElegida, reservaLibro;
+    private Libro libro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +53,8 @@ public class ConsultarListaReservasLibro extends AppCompatActivity {
 
         layoutListaConsultaReservas.setOnItemClickListener((adapterView, view, i, l) -> {
 
-            ReservaLibro reservaElegida = listaReservasLibros.get(i);
-            Intent myIntent = new Intent(view.getContext(), ConsultarReservaLibro.class);
+            reservaElegida = listaReservasLibros.get(i);
+            Intent myIntent = new Intent(view.getContext(), ConsultarReservaLibroActivity.class);
             myIntent.putExtra("reservaElegida",reservaElegida);
             startActivity(myIntent);
 
@@ -90,7 +83,7 @@ public class ConsultarListaReservasLibro extends AppCompatActivity {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                            Libro libro = new Libro(
+                            libro = new Libro(
                                     jsonObject.getInt("idLibro"),
                                     jsonObject.getString("ISBN"),
                                     jsonObject.getString("tituloLibro"),
@@ -99,7 +92,7 @@ public class ConsultarListaReservasLibro extends AppCompatActivity {
                                     jsonObject.getString("srcImagenLibro"));
 
 
-                            ReservaLibro reservaLibro = new ReservaLibro(
+                            reservaLibro = new ReservaLibro(
                                     jsonObject.getInt("idReservaLibro"),
                                     jsonObject.getString("fechaReserva")
                             );
@@ -118,7 +111,7 @@ public class ConsultarListaReservasLibro extends AppCompatActivity {
                     }
 
                 },
-                error -> Toast.makeText(this, "Error al recuperar las reservas del usuario", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

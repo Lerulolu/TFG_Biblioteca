@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReservaAsientos.ConsultarListaReservasAsientoActivity">
+    tools:context=".Administrador.GestionLibros.AdministradorModificarListaLibrosActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,26 +46,40 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="520dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            tools:context=".LoginActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.45">
+
+                <android.widget.SearchView
+                    android:layout_width="match_parent"
+                    android:id="@+id/busquedaLibro"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/borde_negro"
+                    />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:layout_weight="0.85">
+                android:layout_weight="0.45">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
-                    android:text="@string/consultarReservaAsiento.listaReservas"
+                    android:text="@string/reservaLibro.librosDisponibles"
                     android:textAlignment="center"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -76,16 +90,16 @@
             </LinearLayout>
 
             <ListView
+                android:id="@+id/layoutListaReserva"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/layoutListaConsultaReservasAsientos"
-                android:layout_weight="0.15"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.1"
                 android:background="@drawable/borde_negro"
-                tools:listitem="@layout/lista_reserva_asiento">
+                tools:listitem="@layout/lista_libros">
+
+
             </ListView>
-
-
 
 
         </LinearLayout>

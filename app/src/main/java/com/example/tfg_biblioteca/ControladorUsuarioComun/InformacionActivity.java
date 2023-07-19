@@ -1,4 +1,4 @@
-package com.example.tfg_biblioteca.PantallasApp;
+package com.example.tfg_biblioteca.ControladorUsuarioComun;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,17 +6,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.util.Linkify;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tfg_biblioteca.R;
 
-public class Informacion extends AppCompatActivity {
+public class InformacionActivity extends AppCompatActivity {
 
-    TextView telefono, mailUniversidad, ubicacionUniversidad;
+    private TextView telefono, mailUniversidad, ubicacionUniversidad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion);
 
@@ -48,7 +49,7 @@ public class Informacion extends AppCompatActivity {
 
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(uri);
-            startActivity(Intent.createChooser(intent, "Enviar correo"));
+            startActivity(Intent.createChooser(intent, getResources().getString(R.string.enviarCorreo)));
 
         });
 

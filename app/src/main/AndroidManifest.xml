@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,56 +18,99 @@
         android:theme="@style/Theme.TFG_Biblioteca"
         tools:targetApi="31">
         <activity
-            android:name=".ReservaAsientos.ConsultarListaReservasAsiento"
-            android:exported="false" />
+            android:name=".Administrador.GestionLibros.AdministradorModificarListaLibrosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.AjustesLogin"
-            android:exported="false" />
+            android:name=".Administrador.GestionUsarios.AdministradorEditarUsuarioActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.Ajustes"
-            android:exported="false" />
+            android:name=".Administrador.GestionUsarios.AdministradorListaAlumnosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaAsientos.ReservarAsientoVista"
-            android:exported="false" />
+            android:name=".Administrador.GestionLibros.AdministradorAnadirModificarLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.ConsultarReservaLibro"
-            android:exported="false" />
+            android:name=".Administrador.GestionLibros.AdministradorLibrosPrincipalActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.ConsultarListaReservasLibro"
-            android:exported="false" />
+            android:name=".Administrador.PantallaPrincipalAdministradorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.CancelarReservaLibro"
-            android:exported="false" />
+            android:name=".ReservaAsientos.ConsultarListaReservasAsientoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.ReservarLibro"
-            android:exported="false" />
+            android:name=".ControladorUsuarioComun.AjustesLoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaAsientos.CancelarReservaAsiento"
-            android:exported="false" />
+            android:name=".ControladorUsuarioComun.AjustesActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaAsientos.ReservarAsiento"
-            android:exported="false" />
+            android:name=".ReservaAsientos.ReservarAsientoVistaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaAsientos.PantallaPrincipalReservaAsientos"
-            android:exported="false" />
+            android:name=".ReservaLibros.ConsultarReservaLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.ReservarListaLibros"
-            android:exported="false" />
+            android:name=".ReservaLibros.ConsultarListaReservasLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ReservaLibros.PantallaPrincipalReservaLibro"
-            android:exported="false" />
+            android:name=".ReservaLibros.CancelarReservaLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.PantallaPrincipal"
-            android:exported="false" />
+            android:name=".ReservaLibros.ReservarLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.Informacion"
-            android:exported="false" />
+            android:name=".ReservaAsientos.CancelarReservaAsientoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.Login"
-            android:exported="false" />
+            android:name=".ReservaAsientos.ReservarAsientoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".PantallasApp.SplashActivity"
+            android:name=".ReservaAsientos.PantallaPrincipalReservaAsientosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ReservaLibros.ReservarListaLibrosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ReservaLibros.PantallaPrincipalReservaLibroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ControladorUsuarioComun.PantallaPrincipalActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ControladorUsuarioComun.InformacionActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ControladorUsuarioComun.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ControladorUsuarioComun.SplashActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

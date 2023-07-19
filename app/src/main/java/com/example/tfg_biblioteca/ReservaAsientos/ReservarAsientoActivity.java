@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -18,10 +17,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tfg_biblioteca.Adaptadores.AdaptadorMesa;
+import com.example.tfg_biblioteca.Adaptadores.AdaptadorPlanta;
 import com.example.tfg_biblioteca.Clases.Mesa;
 import com.example.tfg_biblioteca.Clases.Planta;
 import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
 import org.json.JSONArray;
@@ -35,17 +36,19 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class ReservarAsiento extends AppCompatActivity {
+public class ReservarAsientoActivity extends AppCompatActivity {
 
     private ArrayList<Planta> listaPlantas;
     private ArrayList<Mesa> listaMesas;
-    Spinner seleccionPiso, seleccionMesa;
-    Button btnBuscarSitios;
-    ImageButton btnSalir;
-    Usuario usuario;
-    ImageButton btnAbrirCalendario;
-    TextView fechaSeleccionada;
-
+    private Spinner seleccionPiso, seleccionMesa;
+    private Button btnBuscarSitios;
+    private ImageButton btnSalir;
+    private Usuario usuario;
+    private ImageButton btnAbrirCalendario;
+    private TextView fechaSeleccionada;
+    private Planta plantaSeleccionada;
+    private AdaptadorPlanta adapterPlanta;
+    private AdaptadorMesa adapterMesa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,7 @@ public class ReservarAsiento extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Planta plantaSeleccionada = listaPlantas.get(i);
+                plantaSeleccionada = listaPlantas.get(i);
                 obtenerMesasPorPlanta(plantaSeleccionada);
 
             }
@@ -82,7 +85,7 @@ public class ReservarAsiento extends AppCompatActivity {
         btnBuscarSitios.setOnClickListener(view -> {
 
             if(fechaSeleccionada.getText().toString().equals("")){
-                Toast.makeText(this, "Por favor, introduce una fecha", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.reservarAsiento_fechaReserva, Toast.LENGTH_LONG).show();
             }
             else{
                 tieneReservasEnEsaFecha();
@@ -125,17 +128,16 @@ public class ReservarAsiento extends AppCompatActivity {
                             listaPlantas.add(planta);
                         }
 
-
-                        ArrayAdapter<Planta> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaPlantas);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        seleccionPiso.setAdapter(adapter);
+                        adapterPlanta = new AdaptadorPlanta(this, listaPlantas);
+                        adapterPlanta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        seleccionPiso.setAdapter(adapterPlanta);
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
 
                 },
-                error -> Toast.makeText(this, "No se han podido recuperar los datos", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
 
         };
 
@@ -172,9 +174,9 @@ public class ReservarAsiento extends AppCompatActivity {
 
                         }
 
-                        ArrayAdapter<Mesa> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaMesas);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        seleccionMesa.setAdapter(adapter);
+                        adapterMesa = new AdaptadorMesa(this, listaMesas);
+                        adapterMesa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        seleccionMesa.setAdapter(adapterMesa);
 
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -183,7 +185,7 @@ public class ReservarAsiento extends AppCompatActivity {
 
 
                 },
-                error -> Toast.makeText(this, "Los datos han sido mal recuperados", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -210,7 +212,7 @@ public class ReservarAsiento extends AppCompatActivity {
 
                         Planta plantaSelec = listaPlantas.get(seleccionPiso.getSelectedItemPosition());
                         Mesa mesaSelec = listaMesas.get(seleccionMesa.getSelectedItemPosition());
-                        Intent myIntent = new Intent(this, ReservarAsientoVista.class);
+                        Intent myIntent = new Intent(this, ReservarAsientoVistaActivity.class);
                         myIntent.putExtra("planta", plantaSelec);
                         myIntent.putExtra("mesa", mesaSelec);
                         myIntent.putExtra("usuario", usuario);
@@ -219,12 +221,12 @@ public class ReservarAsiento extends AppCompatActivity {
 
                     }
                     else{
-                        Toast.makeText(this, "Ya tienes una reserva realizada para esta fecha", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.reservarAsiento_reservaYaRealizada, Toast.LENGTH_LONG).show();
                     }
 
 
                 },
-                error -> Toast.makeText(this, "No se ha realizado la reserva del asiento", Toast.LENGTH_LONG).show()) {
+                error -> Toast.makeText(this, R.string.errorGenerico, Toast.LENGTH_LONG).show()) {
 
             @Override
             protected Map<String, String> getParams() {
@@ -253,7 +255,7 @@ public class ReservarAsiento extends AppCompatActivity {
         Calendar maxDate = Calendar.getInstance();
         maxDate.set(year, month, c.getActualMaximum(Calendar.DAY_OF_MONTH));
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(ReservarAsiento.this,(view1, year1, monthOfYear, dayOfMonth) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(ReservarAsientoActivity.this,(view1, year1, monthOfYear, dayOfMonth) -> {
 
             Calendar selectedDate = Calendar.getInstance();
             selectedDate.set(Calendar.YEAR, year);
@@ -268,7 +270,7 @@ public class ReservarAsiento extends AppCompatActivity {
                     fechaSeleccionada.setText(formattedDate);
             } else {
 
-                Toast.makeText(this, "La biblioteca esta cerrada este dia", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.reservarAsiento_biblioCerrada, Toast.LENGTH_LONG).show();
 
             }
 

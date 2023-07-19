@@ -1,4 +1,4 @@
-package com.example.tfg_biblioteca.PantallasApp;
+package com.example.tfg_biblioteca.ControladorUsuarioComun;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.util.Base64;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.tfg_biblioteca.Clases.Usuario;
+import com.example.tfg_biblioteca.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.io.ObjectInputStream;
 public class Utilidades {
 
     private static Utilidades myUtilidades;
+
+    private Usuario usuario;
 
     private Utilidades(){
 
@@ -36,7 +39,7 @@ public class Utilidades {
 
         String objetoSerializado = sharedPreferences.getString("usuario", "");
 
-        Usuario objetoRecuperado = null;
+        usuario = null;
 
         if (!objetoSerializado.isEmpty()) {
             byte[] bytes = Base64.decode(objetoSerializado, Base64.DEFAULT);
@@ -44,14 +47,14 @@ public class Utilidades {
 
             try {
                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-                objetoRecuperado = (Usuario) objectInputStream.readObject();
+                usuario = (Usuario) objectInputStream.readObject();
                 objectInputStream.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
 
-        return objetoRecuperado;
+        return usuario;
 
     }
 
@@ -59,13 +62,13 @@ public class Utilidades {
 
         AlertDialog.Builder dialogo = new AlertDialog.Builder(context);
 
-        dialogo.setTitle("Cerrar Sesion").
-                setMessage("¿Estas seguro de que quieres salir de la aplicación?")
-                .setPositiveButton("Aceptar", (dialogInterface, i) -> {
-                    Intent myIntent = new Intent(context, Login.class);
+        dialogo.setTitle(R.string.cerrarSesion).
+                setMessage(R.string.cerrarSesionConfirmacion)
+                .setPositiveButton(R.string.aceptar, (dialogInterface, i) -> {
+                    Intent myIntent = new Intent(context, LoginActivity.class);
                     context.startActivity(myIntent);
                 })
-                .setNegativeButton("Cancelar", (dialogInterface, i) -> {
+                .setNegativeButton(R.string.cancelar, (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                 });
 
@@ -73,6 +76,5 @@ public class Utilidades {
         dialog.show();
 
     }
-
 
 }

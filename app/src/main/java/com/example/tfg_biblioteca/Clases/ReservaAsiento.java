@@ -1,7 +1,5 @@
 package com.example.tfg_biblioteca.Clases;
 
-import java.util.Date;
-
 public class ReservaAsiento {
 
     private int idReservaAsiento;
@@ -10,21 +8,17 @@ public class ReservaAsiento {
 
     private String fechaReserva;
 
-    private int idUsuario;
+    private Usuario usuario;
 
     public ReservaAsiento(){
 
     }
 
-    public ReservaAsiento(int idReservaAsiento, Asiento asiento, String fechaReserva, int idUsuario) {
+    public ReservaAsiento(int idReservaAsiento, Asiento asiento, String fechaReserva, Usuario usuario) {
         this.idReservaAsiento = idReservaAsiento;
         this.asiento = asiento;
         this.fechaReserva = fechaReserva;
-        this.idUsuario = idUsuario;
-    }
-
-    public ReservaAsiento(int idReservaAsiento) {
-        this.idReservaAsiento = idReservaAsiento;
+        this.usuario = usuario;
     }
 
     public int getIdReservaAsiento() {
@@ -51,23 +45,13 @@ public class ReservaAsiento {
         this.fechaReserva = fechaReserva;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getIdUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public String toString() {
 
-        String cadena =
-                "\nID Reserva: " + idReservaAsiento + "\n\n" +
-                        "Nº Planta: " + asiento.getIdAsiento() + "\n\n" +
-                        "Nº Mesa: " + asiento.getMesa().getNumeroMesa() + "\n\n" +
-                        "Nº Asiento: " + asiento.getMesa().getPlanta().getNumPlanta() + "\n\n" +
-                        "Fecha Reserva: " + fechaReserva + "\n";
-
-        return cadena;
-    }
 }

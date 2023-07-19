@@ -30,7 +30,6 @@ public class Libro implements Serializable {
 
     }
 
-
     public String getDescripcionLibro() {
         return descripcionLibro;
     }
@@ -78,17 +77,6 @@ public class Libro implements Serializable {
     public void setAutorLibro(String autorLibro) {
         this.autorLibro = autorLibro;
     }
-
-
-    @Override
-    public String toString() {
-        String cadena =
-                "\nAutor Libro: " + autorLibro + "\n\n" +
-                "Titulo Libro: " + nombreLibro + "\n\n" +
-                "ISBN: " + ISBN + "\n" ;
-        return cadena;
-    }
-
 
 
 }

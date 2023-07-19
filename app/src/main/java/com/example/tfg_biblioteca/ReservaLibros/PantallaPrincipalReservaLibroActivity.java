@@ -1,22 +1,19 @@
 package com.example.tfg_biblioteca.ReservaLibros;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.example.tfg_biblioteca.Clases.Usuario;
-import com.example.tfg_biblioteca.PantallasApp.Login;
-import com.example.tfg_biblioteca.PantallasApp.Utilidades;
+import com.example.tfg_biblioteca.ControladorUsuarioComun.Utilidades;
 import com.example.tfg_biblioteca.R;
 
-public class PantallaPrincipalReservaLibro extends AppCompatActivity {
+public class PantallaPrincipalReservaLibroActivity extends AppCompatActivity {
 
-    ImageButton btnReservarLibro, btnCancelarReserva, btnConsultarReserva;
+    private ImageButton btnReservarLibro, btnCancelarReserva, btnConsultarReserva;
 
-    ImageButton btnSalirPPRL;
+    private ImageButton btnSalirPPRL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +28,21 @@ public class PantallaPrincipalReservaLibro extends AppCompatActivity {
 
         btnReservarLibro.setOnClickListener(view -> {
 
-            Intent myIntent = new Intent(view.getContext(), ReservarListaLibros.class);
+            Intent myIntent = new Intent(view.getContext(), ReservarListaLibrosActivity.class);
             startActivity(myIntent);
 
         });
 
         btnCancelarReserva.setOnClickListener(view -> {
 
-            Intent myIntent = new Intent(view.getContext(), CancelarReservaLibro.class);
+            Intent myIntent = new Intent(view.getContext(), CancelarReservaLibroActivity.class);
             startActivity(myIntent);
 
         });
 
         btnConsultarReserva.setOnClickListener(view -> {
 
-            Intent myIntent = new Intent(view.getContext(), ConsultarListaReservasLibro.class);
+            Intent myIntent = new Intent(view.getContext(), ConsultarListaReservasLibroActivity.class);
             startActivity(myIntent);
 
         });

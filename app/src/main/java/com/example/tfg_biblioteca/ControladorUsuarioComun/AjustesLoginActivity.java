@@ -1,6 +1,5 @@
-package com.example.tfg_biblioteca.PantallasApp;
+package com.example.tfg_biblioteca.ControladorUsuarioComun;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,8 +9,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,7 +19,7 @@ import com.example.tfg_biblioteca.R;
 
 import java.util.Locale;
 
-public class AjustesLogin extends AppCompatActivity {
+public class AjustesLoginActivity extends AppCompatActivity {
 
     Button valorarAPP, cambiarContrasena, btnGuardarIdioma;
 
@@ -79,7 +76,7 @@ public class AjustesLogin extends AppCompatActivity {
                 cambiarIdioma("eu", getResources(), view.getContext());
             }
 
-            Intent myIntent = new Intent(view.getContext(), PantallaPrincipal.class);
+            Intent myIntent = new Intent(view.getContext(), PantallaPrincipalActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(myIntent);
 
