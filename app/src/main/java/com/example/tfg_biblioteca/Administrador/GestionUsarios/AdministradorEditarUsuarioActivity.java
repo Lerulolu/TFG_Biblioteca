@@ -37,7 +37,7 @@ public class AdministradorEditarUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrador_editar_usuario);
 
-        usuario = (Usuario) getIntent().getExtras().getSerializable("usuario");
+        usuario = (Usuario) getIntent().getExtras().getSerializable("alumno");
 
         btnGuardar = findViewById(R.id.btnGuardar);
         nombreAlumno = findViewById(R.id.nombreAlumno);
@@ -90,7 +90,11 @@ public class AdministradorEditarUsuarioActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/administrador_actualizarAlumno.php",
 
-                response -> Toast.makeText(this, R.string.administrador_alumnoActualizado, Toast.LENGTH_LONG).show(),
+                response -> {
+                    Toast.makeText(this, R.string.administrador_alumnoActualizado, Toast.LENGTH_LONG).show();
+                    Intent myIntent = new Intent(this, PantallaPrincipalAdministradorActivity.class);
+                    startActivity(myIntent);
+                },
                 error -> Toast.makeText(this, R.string.administrador_noAlumnoActualizado, Toast.LENGTH_LONG).show()) {
 
             @Override

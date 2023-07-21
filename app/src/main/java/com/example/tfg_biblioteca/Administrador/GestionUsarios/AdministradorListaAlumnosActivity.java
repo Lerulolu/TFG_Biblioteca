@@ -52,7 +52,7 @@ public class AdministradorListaAlumnosActivity extends AppCompatActivity {
 
             usuario = listaUsuarios.get(i);
             Intent myIntent = new Intent(view.getContext(), AdministradorEditarUsuarioActivity.class);
-            myIntent.putExtra("usuario",usuario);
+            myIntent.putExtra("alumno",usuario);
             startActivity(myIntent);
 
         });
