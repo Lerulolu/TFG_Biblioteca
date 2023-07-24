@@ -40,6 +40,10 @@
     <string name="reservarAsiento.mesa">M\nA\nH\nA\nI\nA</string>
     <string name="reservarAsiento.seleccionPlanta">Solairua</string>
     <string name="reservarAsiento.seleccionMesa">Mahaia</string>
+    <string name="reservarAsiento.fechaReserva">Mesedez, sartu data bat</string>
+    <string name="reservarAsiento.reservaYaRealizada">Data honetarako erreserba bat daukazu</string>
+    <string name="reservarAsiento.biblioCerrada">Liburutegia itxita dago egun honetan</string>
+
 
     <string name="cancelarReservaAsiento.cancelarReserva">Cancelar Reserva</string>
     <string name="cancelarReservaAsiento.descripcion">Mesedez, sartu ezezttu nahi duzun erreserbaren IDa.</string>
@@ -54,6 +58,9 @@
     <string name="consultarReservaAsiento.numMesa">Mahai Zenbakia: </string>
     <string name="consultarReservaAsiento.numAsiento">Aulki Zenbakia:: </string>
     <string name="consultarReservaAsiento.listaReservas">Egindako Erreserbak</string>
+    <string name="consultarReservaAsiento.errorRecuperReservas">Errorea erabiltzailearen erreserbak berreskuratzean</string>
+    <string name="reservaAsiento.deseaReservar">Leku hau erreserbatu nahi duzu?</string>
+    <string name="reservaAsiento.reservaRealizada">Lekuaren erreserba eginda</string>
 
 
     <!-- ////////////////////////////// -->
@@ -95,6 +102,11 @@
     <string name="valorarAPP">Aplikazioa Baloratu</string>
     <string name="idioma.castellano">Gaztelania</string>
     <string name="idioma.euskera">Euskara</string>
+    <string name="loginDatos">Mesedez, sartu zure datuak</string>
+    <string name="loginErroneo">Erabiltzailea edo pasahitza gaizki dago</string>
+    <string name="enviarCorreo">Mezua bidali</string>
+    <string name="cerrarSesion">Saioa itxi</string>
+    <string name="cerrarSesionConfirmacion">Ziur zaude aplikaziotik irten nahi duzula?</string>
 
     <!-- ////////////////////////////// -->
     <!-- ///////     AJUSTES   //////// -->
@@ -124,6 +136,10 @@
     <string name="administrador.modificarPregunta">Liburu hau sisteman aldatu nahi duzu?</string>
     <string name="administrador.anadirPregunta">Liburu hau sistemara gehitu nahi al duzu?</string>
     <string name="administrador.editarAlumno">Ikasle hau sisteman editatu nahi duzu?</string>
+    <string name="administrador.insertaNombreAlumno">Mesedez, sartu ikaslearen izena</string>
+    <string name="administrador.insertaLDAP">Mesedez, sartu ikaslearen LDAP-a</string>
+    <string name="administrador.alumnoActualizado">Ikaslea eguneratu egin da</string>
+    <string name="administrador.noAlumnoActualizado">Ezin izan da ikaslea eguneratu</string>
 
 
     

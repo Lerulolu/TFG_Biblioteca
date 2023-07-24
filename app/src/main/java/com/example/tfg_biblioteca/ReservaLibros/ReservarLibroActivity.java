@@ -74,7 +74,7 @@ public class ReservarLibroActivity extends AppCompatActivity {
                     setMessage(R.string.reservaLibro_deseaReservar)
                     .setPositiveButton(R.string.aceptar, (dialogInterface, i) -> {
 
-                        realizarReservaLibro(libro, usuario, "http://192.168.0.37:80/proyecto_tfg/realizarReserva.php");
+                        realizarReservaLibro(libro, usuario, "http://192.168.0.37:80/proyecto_tfg/libro_realizar_reserva.php");
 
                         Intent myIntent = new Intent(view.getContext(), PantallaPrincipalActivity.class);
                         myIntent.putExtra("usuario", usuario);

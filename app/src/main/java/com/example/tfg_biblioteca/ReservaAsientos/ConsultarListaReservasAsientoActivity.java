@@ -61,18 +61,18 @@ public class ConsultarListaReservasAsientoActivity extends AppCompatActivity {
 
         btnSalir = findViewById(R.id.btnSalir);
 
-        cargarListaReservaAsientos(usuario);
+        cargarListaReservaAsientos();
 
         btnSalir.setOnClickListener(view ->  Utilidades.getMyUtilidades().cerrarSesion(this));
 
 
     }
 
-    private void cargarListaReservaAsientos(Usuario usuario){
+    private void cargarListaReservaAsientos(){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaReservasAsientos.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asiento_obtener_lista_reservas.php",
 
                 response -> {
 
@@ -108,7 +108,7 @@ public class ConsultarListaReservasAsientoActivity extends AppCompatActivity {
                             reservaAsiento = new ReservaAsiento(
                                     jsonObject.getInt("idReservaAsiento"),
                                     asiento, jsonObject.getString("fechaReserva"),
-                                    new Usuario(usuario.getIdUsuario())
+                                    usuario
                             );
 
                             listaReservaAsientos.add(reservaAsiento);

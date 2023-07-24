@@ -51,7 +51,7 @@ public class CancelarReservaAsientoActivity extends AppCompatActivity {
 
             RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/cancelarReservaAsiento.php",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asiento_cancelar_reserva.php",
 
 
                     response -> {
@@ -62,7 +62,6 @@ public class CancelarReservaAsientoActivity extends AppCompatActivity {
 
                             Toast.makeText(this, R.string.cancelarReservaAsiento_idEncontrado, Toast.LENGTH_LONG).show();
                             Intent myIntent = new Intent(this, PantallaPrincipalActivity.class);
-                            myIntent.putExtra("usuario", usuario);
                             startActivity(myIntent);
 
                         } else if(respuesta.equals("1")){

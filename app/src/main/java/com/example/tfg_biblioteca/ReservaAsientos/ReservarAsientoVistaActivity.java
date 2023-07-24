@@ -93,7 +93,7 @@ public class ReservarAsientoVistaActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/realizarReservaAsiento.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asiento_realizar_reserva.php",
 
                 response -> {
 
@@ -137,7 +137,7 @@ public class ReservarAsientoVistaActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerAsientosReservadosEnFecha.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asientos_obtener_asientos_reservados_en_fecha.php",
 
                 response -> {
 
@@ -183,7 +183,7 @@ public class ReservarAsientoVistaActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaSillasPorMesaYPlanta.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asientos_obtener_sillas_por_mesa_y_planta.php",
 
                 response -> {
 
@@ -226,7 +226,8 @@ public class ReservarAsientoVistaActivity extends AppCompatActivity {
 
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                                    1
                             );
 
                             layoutParams.setMargins(0, 100, 0, 100);

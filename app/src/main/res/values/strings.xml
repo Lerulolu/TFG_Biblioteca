@@ -100,7 +100,7 @@
     <string name="valorarAPP">Valorar Aplicación</string>
     <string name="idioma.castellano">Castellano</string>
     <string name="idioma.euskera">Euskera</string>
-    <string name="loginDatos">Por favor introduce los datos del Log in</string>El usuario o la contraseña es erróneo
+    <string name="loginDatos">Por favor introduce los datos del Log in</string>
     <string name="loginErroneo">El usuario o la contraseña es erróneo</string>
     <string name="enviarCorreo">Enviar Correo</string>
     <string name="cerrarSesion">Cerrar Sesión</string>
@@ -139,7 +139,7 @@
     <string name="administrador.insertaNombreAlumno">Por favor introduce un nombre para el alumno</string>
     <string name="administrador.insertaLDAP">Por favor introduce un LDAP para el alumno</string>
     <string name="administrador.alumnoActualizado">Se ha actualizado el Alumno</string>
-    <string name="administrador.noAlumnoActualizado">No se ha podido actualizar el Alumnoo</string>
+    <string name="administrador.noAlumnoActualizado">No se ha podido actualizar el Alumno</string>
 
 
 </resources>

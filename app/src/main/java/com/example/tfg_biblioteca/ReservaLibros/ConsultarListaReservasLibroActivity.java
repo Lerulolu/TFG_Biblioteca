@@ -67,7 +67,7 @@ public class ConsultarListaReservasLibroActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaReservasLibros.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/libros_obtener_lista_reservas_alumno.php",
 
                 response -> {
 

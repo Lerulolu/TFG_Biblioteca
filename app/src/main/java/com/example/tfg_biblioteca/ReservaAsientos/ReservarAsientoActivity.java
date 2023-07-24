@@ -104,7 +104,7 @@ public class ReservarAsientoActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaPlantas.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asientos_obtener_lista_plantas.php",
 
                 response -> {
 
@@ -149,7 +149,7 @@ public class ReservarAsientoActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/obtenerListaMesasPorPlanta.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asientos_obtener_mesas_por_planta.php",
 
                 response -> {
 
@@ -202,7 +202,7 @@ public class ReservarAsientoActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/tieneReservasEnFecha.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/asientos_tiene_reservas_en_fecha.php",
 
                 response -> {
 
@@ -210,12 +210,9 @@ public class ReservarAsientoActivity extends AppCompatActivity {
 
                     if(respuesta.equals("0")){
 
-                        Planta plantaSelec = listaPlantas.get(seleccionPiso.getSelectedItemPosition());
                         Mesa mesaSelec = listaMesas.get(seleccionMesa.getSelectedItemPosition());
                         Intent myIntent = new Intent(this, ReservarAsientoVistaActivity.class);
-                        myIntent.putExtra("planta", plantaSelec);
                         myIntent.putExtra("mesa", mesaSelec);
-                        myIntent.putExtra("usuario", usuario);
                         myIntent.putExtra("fechaReserva", fechaSeleccionada.getText().toString());
                         startActivity(myIntent);
 

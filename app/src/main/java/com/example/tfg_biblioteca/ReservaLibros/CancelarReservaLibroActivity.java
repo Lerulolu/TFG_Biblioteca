@@ -54,7 +54,7 @@ public class CancelarReservaLibroActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/cancelarReservaLibro.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.37:80/proyecto_tfg/libro_cancelar_reserva.php",
 
 
                 response -> {
@@ -65,7 +65,6 @@ public class CancelarReservaLibroActivity extends AppCompatActivity {
 
                         Toast.makeText(this, R.string.cancelarReservaLibro_idEncontrado, Toast.LENGTH_LONG).show();
                         Intent myIntent = new Intent(this, PantallaPrincipalActivity.class);
-                        myIntent.putExtra("usuario", usuario);
                         startActivity(myIntent);
 
                     } else if(respuesta.equals("1")){
@@ -89,6 +88,7 @@ public class CancelarReservaLibroActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("idReservaLibro", idCancelacion);
+                params.put("idUsuario", String.valueOf(usuario.getIdUsuario()));
                 return params;
             }
         };
